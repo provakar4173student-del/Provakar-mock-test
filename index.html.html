@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#4f46e5">
+<title>PROVAKAR MOCK PRACTICE - Ultimate CBT</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+/* ===== BASE VARIABLES & RESET ===== */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+--primary:#4f46e5;--primary-dark:#4338ca;--primary-light:#818cf8;--primary-bg:#eef2ff;
+--success:#10b981;--success-dark:#059669;--success-bg:#ecfdf5;
+--danger:#ef4444;--danger-dark:#dc2626;--danger-bg:#fef2f2;
+--warning:#f59e0b;--warning-dark:#d97706;--warning-bg:#fff7ed;
+--info:#3b82f6;--info-bg:#eff6ff;
+--bg:#f8fafc;--bg2:#f1f5f9;--card:#ffffff;--card-hover:#fafbfc;
+--text:#0f172a;--text2:#475569;--text3:#94a3b8;
+--border:#e2e8f0;--border2:#cbd5e1;
+--shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);
+--shadow-md:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
+--shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
+--shadow-xl:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);
+--radius:12px;--radius-sm:8px;--radius-lg:16px;--radius-xl:20px;
+--header-h:64px;
+--q-font-size: 17px;
+}
+[data-theme="dark"]{
+--bg:#0f172a;--bg2:#1e293b;--card:#1e293b;--card-hover:#334155;
+--text:#f1f5f9;--text2:#cbd5e1;--text3:#64748b;
+--border:#334155;--border2:#475569;
+--primary-bg:#1e1b4b;--success-bg:#064e3b;--danger-bg:#450a0a;
+--warning-bg:#451a03;--info-bg:#1e3a5f;
+}
+html,body{height:100%;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+*{transition:background-color .3s ease,color .3s ease,border-color .3s ease}
+button{font-family:inherit;cursor:pointer;border:none;outline:none;transition:all .25s cubic-bezier(.4,0,.2,1);background:none;color:inherit}
+button:active{transform:scale(.97)}
+input,textarea,select{font-family:inherit;outline:none;background:var(--card);color:var(--text);border:2px solid var(--border);transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus,select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.15)}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--text3)}
+
+/* ===== HEADER ===== */
+.header{position:sticky;top:0;z-index:100;background:var(--card);border-bottom:1px solid var(--border);height:var(--header-h);display:flex;align-items:center;justify-content:space-between;padding:0 16px;box-shadow:var(--shadow);will-change:transform}
+.header-left,.header-right{display:flex;align-items:center;gap:8px}
+.header-center{flex:1;display:flex;justify-content:center;align-items:center;gap:12px}
+.header-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg2);color:var(--text2);transition:all .25s cubic-bezier(.4,0,.2,1);will-change:transform}
+.header-btn:hover{background:var(--primary-bg);color:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.logo{font-size:18px;font-weight:800;background:linear-gradient(135deg,var(--primary),#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;letter-spacing:-.5px}
+.ist-clock{font-size:13px;color:var(--text2);font-family:'Courier New',monospace;font-weight:600;background:var(--bg2);padding:6px 14px;border-radius:20px;white-space:nowrap;border:1px solid var(--border);transition:all .4s cubic-bezier(.4,0,.2,1)}
+.ist-clock.hidden{display:none}
+.theme-toggle{width:56px;height:30px;border-radius:15px;background:linear-gradient(135deg,#fbbf24,#f59e0b);position:relative;cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1);border:2px solid var(--border);overflow:hidden}
+.theme-toggle.dark{background:linear-gradient(135deg,#1e293b,#0f172a)}
+.theme-toggle::before{content:'☀️';position:absolute;top:50%;left:6px;transform:translateY(-50%);font-size:14px;transition:opacity .3s}
+.theme-toggle.dark::before{opacity:0}
+.theme-toggle::after{content:'🌙';position:absolute;top:50%;right:6px;transform:translateY(-50%);font-size:14px;transition:opacity .3s}
+.theme-toggle:not(.dark)::after{opacity:0}
+.theme-toggle .knob{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:white;transition:all .4s cubic-bezier(.4,0,.2,1);box-shadow:var(--shadow);will-change:transform}
+.theme-toggle.dark .knob{transform:translateX(22px)}
+.profile-badge{display:flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;background:var(--bg2);border-radius:30px;cursor:pointer;transition:all .25s;border:1px solid var(--border)}
+.profile-badge:hover{background:var(--primary-bg);border-color:var(--primary-light);transform:translateY(-2px)}
+.profile-img{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#7c3aed);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;overflow:hidden;flex-shrink:0}
+.profile-img img{width:100%;height:100%;object-fit:cover}
+.profile-name{font-size:13px;font-weight:600;color:var(--text);max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ===== VIEWS ===== */
+.view{display:none;min-height:calc(100vh - var(--header-h));animation:viewFadeIn .4s cubic-bezier(.4,0,.2,1)}
+.view.active{display:block}
+@keyframes viewFadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== PROFILE SETUP ===== */
+.profile-setup{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);position:relative;overflow:hidden}
+.profile-setup::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(255,255,255,.15) 0%,transparent 50%),radial-gradient(circle at 80% 50%,rgba(255,255,255,.15) 0%,transparent 50%);animation:bgFloat 15s ease-in-out infinite}
+@keyframes bgFloat{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.1) rotate(5deg)}}
+.profile-card{background:var(--card);border-radius:var(--radius-xl);padding:40px;max-width:480px;width:100%;box-shadow:var(--shadow-xl);position:relative;z-index:1;animation:slideUp .6s cubic-bezier(.4,0,.2,1)}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.profile-card h1{font-size:28px;text-align:center;margin-bottom:8px;background:linear-gradient(135deg,var(--primary),#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800}
+.profile-card .subtitle{text-align:center;color:var(--text2);margin-bottom:32px;font-size:14px}
+.photo-upload{width:120px;height:120px;border-radius:50%;margin:0 auto 24px;background:var(--bg2);border:3px dashed var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:all .3s}
+.photo-upload:hover{border-color:var(--primary);background:var(--primary-bg);transform:scale(1.05)}
+.photo-upload img{width:100%;height:100%;object-fit:cover}
+.photo-upload .upload-icon{font-size:40px;color:var(--text3)}
+.photo-upload input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.form-group{margin-bottom:16px}
+.form-label{display:block;font-size:13px;font-weight:600;color:var(--text2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.form-input{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:15px;background:var(--card);color:var(--text)}
+.btn{padding:12px 20px;border-radius:var(--radius-sm);font-weight:600;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:all .25s cubic-bezier(.4,0,.2,1);will-change:transform}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:linear-gradient(135deg,var(--primary),#7c3aed);color:white;box-shadow:0 4px 12px rgba(79,70,229,.3)}
+.btn-primary:hover{box-shadow:0 8px 20px rgba(79,70,229,.4);transform:translateY(-3px)}
+.btn-secondary{background:var(--bg2);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{background:var(--border)}
+.btn-success{background:var(--success);color:white}
+.btn-danger{background:var(--danger);color:white}
+.btn-warning{background:var(--warning);color:white}
+.btn-full{width:100%}
+.btn-lg{padding:14px 24px;font-size:16px}
+.btn-sm{padding:6px 12px;font-size:12px}
+
+/* ===== DASHBOARD ===== */
+.dashboard{padding:20px;max-width:1400px;margin:0 auto}
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.dash-title{font-size:24px;font-weight:800}
+.dash-actions{display:flex;gap:8px;flex-wrap:wrap}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.stat-card{background:var(--card);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow);display:flex;align-items:center;gap:16px;transition:all .3s cubic-bezier(.4,0,.2,1);border:1px solid var(--border);will-change:transform}
+.stat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.stat-icon{width:56px;height:56px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.stat-icon.blue{background:var(--primary-bg);color:var(--primary)}
+.stat-icon.green{background:var(--success-bg);color:var(--success)}
+.stat-icon.orange{background:var(--warning-bg);color:var(--warning)}
+.stat-icon.red{background:var(--danger-bg);color:var(--danger)}
+.stat-info h3{font-size:24px;font-weight:800;color:var(--text)}
+.stat-info p{font-size:13px;color:var(--text2)}
+.section{background:var(--card);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.section-title{font-size:18px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px}
+.test-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.test-card{background:linear-gradient(135deg,var(--primary-bg),var(--card));border:2px solid var(--border);border-radius:var(--radius);padding:20px;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;will-change:transform}
+.test-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--primary-light)}
+.test-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:8px}
+.test-card-name{font-size:16px;font-weight:700;color:var(--text);word-break:break-word;flex:1}
+.menu-btn{width:32px;height:32px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--text2);flex-shrink:0;transition:all .2s}
+.menu-btn:hover{background:var(--bg2);transform:rotate(90deg)}
+.dropdown{position:absolute;top:100%;right:0;background:var(--card);border-radius:var(--radius-sm);box-shadow:var(--shadow-xl);min-width:160px;z-index:100;display:none;overflow:hidden;margin-top:4px;border:1px solid var(--border);animation:dropIn .2s ease}
+@keyframes dropIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.dropdown.show{display:block}
+.dropdown button{width:100%;padding:10px 14px;text-align:left;background:none;color:var(--text);font-size:14px;display:flex;align-items:center;gap:8px;transition:background .2s}
+.dropdown button:hover{background:var(--bg2)}
+.dropdown button.danger{color:var(--danger)}
+.test-card-meta{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.meta-tag{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:4px;background:var(--card);padding:4px 10px;border-radius:20px;border:1px solid var(--border)}
+.test-card-actions{display:flex;gap:8px;margin-top:12px}
+.test-card-actions button{flex:1;padding:10px;border-radius:var(--radius-sm);font-weight:600;font-size:13px;transition:all .25s}
+.btn-start{background:linear-gradient(135deg,var(--primary),#7c3aed);color:white}
+.btn-start:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(79,70,229,.4)}
+.btn-edit{background:var(--card);color:var(--text);border:1px solid var(--border)}
+.empty-state{text-align:center;padding:60px 20px;color:var(--text2)}
+.empty-state-icon{font-size:64px;margin-bottom:16px;opacity:.5}
+
+/* ===== TIME CONFIG ===== */
+.time-config{min-height:calc(100vh - var(--header-h));display:flex;align-items:center;justify-content:center;padding:20px}
+.time-config-card{background:var(--card);border-radius:var(--radius-xl);padding:40px;max-width:500px;width:100%;box-shadow:var(--shadow-xl);border:1px solid var(--border);animation:slideUp .5s cubic-bezier(.4,0,.2,1)}
+.time-config-card h2{font-size:24px;text-align:center;margin-bottom:8px}
+.time-config-card .subtitle{text-align:center;color:var(--text2);margin-bottom:24px;font-size:14px}
+.time-display{background:linear-gradient(135deg,var(--primary),#7c3aed);color:white;border-radius:var(--radius-lg);padding:32px;text-align:center;margin-bottom:24px;position:relative;overflow:hidden}
+.time-display::before{content:'';position:absolute;top:-50%;right:-20%;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent);border-radius:50%}
+.time-display .big-time{font-size:48px;font-weight:800;font-family:'Courier New',monospace;margin-bottom:8px;position:relative}
+.time-display .time-label{font-size:14px;opacity:.9;position:relative}
+.time-inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.time-input-group{background:var(--bg2);padding:16px;border-radius:var(--radius);border:1px solid var(--border)}
+.time-input-group label{font-size:12px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:8px}
+.time-input-group input{width:100%;padding:10px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:20px;font-weight:700;text-align:center;background:var(--card);color:var(--text)}
+.time-presets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
+.preset-btn{padding:10px;border-radius:var(--radius-sm);background:var(--bg2);border:1px solid var(--border);font-weight:600;font-size:13px;color:var(--text);transition:all .2s}
+.preset-btn:hover{background:var(--primary-bg);border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
+
+/* ===== EXAM UI ===== */
+.exam-container{display:flex;flex-direction:column;min-height:calc(100vh - var(--header-h));position:relative}
+.exam-main{display:grid;grid-template-columns:1fr 340px;gap:0;flex:1}
+.exam-left{padding:20px;overflow-y:auto;max-height:calc(100vh - var(--header-h));position:relative;transition:filter .4s ease}
+.exam-left.blurred{filter:blur(12px) brightness(.8);pointer-events:none;user-select:none}
+.exam-right{background:var(--card);border-left:1px solid var(--border);padding:20px;overflow-y:auto;max-height:calc(100vh - var(--header-h))}
+
+/* Advanced Tools Bar (V6) */
+.exam-tools-bar{display:flex;gap:10px;margin-bottom:16px;background:var(--bg2);padding:10px;border-radius:var(--radius);border:1px solid var(--border);align-items:center;flex-wrap:wrap}
+.tool-btn{padding:6px 12px;background:var(--card);border:1px solid var(--border);border-radius:6px;font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:6px}
+.tool-btn:hover{border-color:var(--primary);color:var(--primary)}
+.font-resizer{display:flex;background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.font-resizer button{padding:6px 12px;font-weight:700;border-right:1px solid var(--border)}
+.font-resizer button:last-child{border-right:none}
+.font-resizer button:hover{background:var(--primary-bg);color:var(--primary)}
+
+/* Pause Overlay */
+.pause-overlay{position:absolute;inset:0;background:rgba(15,23,42,.85);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;z-index:50;flex-direction:column;gap:20px}
+.pause-overlay.active{display:flex;animation:fadeIn .3s}
+.pause-overlay .pause-icon{font-size:80px;animation:pulsePause 2s infinite}
+@keyframes pulsePause{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:.8}}
+.pause-overlay h2{color:white;font-size:32px;font-weight:800}
+.pause-overlay p{color:rgba(255,255,255,.8);font-size:16px}
+.resume-btn{padding:18px 48px;background:linear-gradient(135deg,var(--success),var(--success-dark));color:white;border-radius:50px;font-size:18px;font-weight:700;box-shadow:0 8px 30px rgba(16,185,129,.4);transition:all .3s;animation:resumeGlow 2s infinite;cursor:pointer}
+@keyframes resumeGlow{0%,100%{box-shadow:0 8px 30px rgba(16,185,129,.4)}50%{box-shadow:0 8px 40px rgba(16,185,129,.7);transform:scale(1.05)}}
+.resume-btn:hover{transform:translateY(-3px) scale(1.05)}
+
+.question-card{background:var(--card);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;border:1px solid var(--border);position:relative}
+.question-top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:16px;border-bottom:2px solid var(--border);flex-wrap:wrap;gap:12px}
+.question-top-left{display:flex;align-items:center;gap:12px}
+.question-top-right{display:flex;align-items:center;gap:12px}
+.per-q-timer-box{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:var(--radius-sm);background:var(--bg2);border:2px solid var(--border);font-family:'Courier New',monospace;font-weight:700;font-size:16px;transition:all .3s cubic-bezier(.4,0,.2,1);will-change:transform,background-color}
+.per-q-timer-box.normal{color:var(--text);border-color:var(--border)}
+.per-q-timer-box.warning{color:var(--warning);background:var(--warning-bg);border-color:var(--warning);animation:timerPulse 1s infinite}
+.per-q-timer-box.danger{color:var(--danger);background:var(--danger-bg);border-color:var(--danger);animation:timerPulse .5s infinite}
+.per-q-timer-box.overtime{color:var(--danger);background:var(--danger-bg);border-color:var(--danger);animation:timerPulse .5s infinite}
+@keyframes timerPulse{0%,100%{transform:scale(1);opacity:1;box-shadow:0 0 0 0 rgba(239,68,68,.4)}50%{transform:scale(1.05);opacity:.85;box-shadow:0 0 0 8px rgba(239,68,68,0)}}
+.question-number{font-size:14px;color:var(--text2);font-weight:600}
+.question-number strong{color:var(--primary);font-size:16px}
+.question-text{font-size:var(--q-font-size);line-height:1.7;color:var(--text);margin-bottom:20px;font-weight:600;transition:font-size .2s}
+.options-list{display:flex;flex-direction:column;gap:10px}
+.option-item{display:flex;align-items:center;gap:12px;padding:14px 16px;border:2px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all .25s cubic-bezier(.4,0,.2,1);background:var(--card);will-change:transform,border-color}
+.option-item:hover{border-color:var(--primary-light);background:var(--primary-bg);transform:translateX(4px)}
+.option-item.selected{border-color:var(--primary);background:var(--primary-bg);box-shadow:0 4px 12px rgba(79,70,229,.15)}
+.option-item.correct-answer{border-color:var(--success);background:var(--success-bg)}
+.option-item.wrong-answer{border-color:var(--danger);background:var(--danger-bg)}
+.option-radio{width:24px;height:24px;border-radius:50%;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s;font-weight:700;font-size:12px}
+.option-item.selected .option-radio{border-color:var(--primary);background:var(--primary);color:white}
+.option-item.selected .option-radio::after{content:'✓'}
+.option-item.correct-answer .option-radio{border-color:var(--success);background:var(--success);color:white}
+.option-item.correct-answer .option-radio::after{content:'✓'}
+.option-item.wrong-answer .option-radio{border-color:var(--danger);background:var(--danger);color:white}
+.option-item.wrong-answer .option-radio::after{content:'✗'}
+.option-label{font-size:15px;color:var(--text);flex:1}
+.exam-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.exam-actions button{padding:12px 18px;border-radius:var(--radius-sm);font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;flex:1;justify-content:center;min-width:100px;transition:all .25s}
+.exam-actions button:hover{transform:translateY(-2px)}
+.btn-save{background:var(--success);color:white}
+.btn-save:hover{background:var(--success-dark)}
+.btn-mark{background:var(--warning);color:white}
+.btn-mark:hover{background:var(--warning-dark)}
+.btn-mark.marked{background:var(--warning-dark);box-shadow:0 0 0 3px rgba(245,158,11,.3)}
+.btn-clear{background:var(--bg2);color:var(--text);border:1px solid var(--border)}
+.btn-clear:hover{background:var(--border)}
+.btn-pause{background:var(--info);color:white}
+.btn-pause:hover{background:#2563eb}
+.btn-submit-exam{background:var(--danger);color:white}
+.btn-submit-exam:hover{background:var(--danger-dark)}
+
+/* Right Side - Total Timer + Palette */
+.total-timer-card{background:linear-gradient(135deg,var(--primary),#7c3aed);border-radius:var(--radius);padding:16px;margin-bottom:16px;color:white;box-shadow:var(--shadow-lg);position:relative;overflow:hidden;transition:all .4s}
+.total-timer-card.hidden{display:none}
+.total-timer-card::before{content:'';position:absolute;top:-50%;right:-20%;width:150px;height:150px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent);border-radius:50%}
+.total-timer-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;opacity:.85;margin-bottom:6px;display:flex;align-items:center;gap:6px;position:relative}
+.total-timer-value{font-size:32px;font-weight:800;font-family:'Courier New',monospace;position:relative;letter-spacing:1px}
+.total-timer-card.warning{background:linear-gradient(135deg,var(--warning),var(--warning-dark));animation:timerPulse 1s infinite}
+.total-timer-card.danger{background:linear-gradient(135deg,var(--danger),var(--danger-dark));animation:timerPulse .5s infinite}
+
+.palette-section{margin-bottom:20px}
+.palette-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.palette-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.palette-btn{aspect-ratio:1;border-radius:var(--radius-sm);border:2px solid var(--border);background:var(--card);font-weight:700;font-size:14px;color:var(--text);display:flex;align-items:center;justify-content:center;transition:all .25s cubic-bezier(.4,0,.2,1);will-change:transform}
+.palette-btn:hover{transform:scale(1.1);border-color:var(--primary);box-shadow:var(--shadow-md)}
+.palette-btn.current{border-color:var(--primary);background:var(--primary);color:white;box-shadow:0 4px 12px rgba(79,70,229,.4);transform:scale(1.05)}
+.palette-btn.answered{background:var(--success);border-color:var(--success);color:white}
+.palette-btn.marked{background:var(--warning);border-color:var(--warning);color:white}
+.palette-btn.answered-marked{background:linear-gradient(135deg,var(--success),var(--warning));border-color:var(--warning);color:white}
+.palette-btn.wrong{background:var(--danger);border-color:var(--danger);color:white}
+.palette-btn.unanswered-visited{background:#fecaca;border-color:var(--danger);color:var(--danger-dark)}
+.palette-legend{display:flex;flex-direction:column;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.legend-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2)}
+.legend-dot{width:20px;height:20px;border-radius:4px;border:2px solid var(--border)}
+.legend-dot.current{background:var(--primary);border-color:var(--primary)}
+.legend-dot.answered{background:var(--success);border-color:var(--success)}
+.legend-dot.marked{background:var(--warning);border-color:var(--warning)}
+.legend-dot.wrong{background:var(--danger);border-color:var(--danger)}
+.legend-dot.not-visited{background:var(--card)}
+
+/* Tools Details */
+.scratchpad-container{position:absolute;inset:0;z-index:40;display:none;background:rgba(255,255,255,0.1);backdrop-filter:blur(2px);border-radius:var(--radius-lg)}
+.scratchpad-container.active{display:block}
+.scratchpad-tools{position:absolute;top:10px;right:10px;background:var(--card);padding:10px;border-radius:var(--radius);box-shadow:var(--shadow-lg);display:flex;gap:10px;border:1px solid var(--border)}
+canvas#roughCanvas{width:100%;height:100%;cursor:crosshair;border-radius:var(--radius-lg)}
+
+.calculator-modal{position:absolute;top:100px;left:50px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow-xl);border:1px solid var(--border);width:260px;z-index:45;display:none;overflow:hidden}
+.calculator-modal.active{display:block;animation:fadeIn .2s}
+.calc-header{background:var(--primary);color:white;padding:10px;font-weight:700;display:flex;justify-content:space-between;cursor:move}
+.calc-display{background:#1e293b;color:#10b981;font-family:'Courier New',monospace;font-size:24px;padding:15px;text-align:right;border:none;width:100%}
+.calc-keys{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.calc-keys button{background:var(--card);padding:15px 0;font-size:18px;font-weight:600}
+.calc-keys button:hover{background:var(--bg2)}
+.calc-keys button.op{background:var(--primary-bg);color:var(--primary)}
+
+/* ===== RESULTS ===== */
+.results-container{padding:20px;max-width:1200px;margin:0 auto}
+.results-header{background:linear-gradient(135deg,var(--primary),#7c3aed);border-radius:var(--radius-lg);padding:32px;color:white;margin-bottom:20px;position:relative;overflow:hidden}
+.results-header::before{content:'';position:absolute;top:-50%;right:-20%;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent);border-radius:50%}
+.results-header h1{font-size:28px;font-weight:800;margin-bottom:8px;position:relative}
+.results-header p{opacity:.9;position:relative}
+.results-score{position:absolute;top:50%;right:32px;transform:translateY(-50%);text-align:center}
+.results-score-circle{width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;backdrop-filter:blur(10px);border:3px solid rgba(255,255,255,.3)}
+.results-score-num{font-size:36px;font-weight:800}
+.results-score-total{font-size:14px;opacity:.9}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:20px}
+.metric-card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);text-align:center;border:1px solid var(--border);transition:all .3s}
+.metric-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.metric-icon{font-size:32px;margin-bottom:8px}
+.metric-value{font-size:28px;font-weight:800;color:var(--text)}
+.metric-label{font-size:13px;color:var(--text2);margin-top:4px}
+.metric-card.correct .metric-value{color:var(--success)}
+.metric-card.wrong .metric-value{color:var(--danger)}
+.metric-card.skipped .metric-value{color:var(--warning)}
+.metric-card.time .metric-value{color:var(--primary)}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.chart-card{background:var(--card);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.chart-title{font-size:16px;font-weight:700;margin-bottom:16px;color:var(--text)}
+.chart-container{display:flex;justify-content:center;align-items:center;min-height:250px}
+.review-section{background:var(--card);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow);margin-bottom:20px;border:1px solid var(--border)}
+.review-item{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;transition:all .2s}
+.review-item:hover{box-shadow:var(--shadow-md)}
+.review-item-header{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:var(--bg2);transition:all .2s;gap:8px}
+.review-item-header:hover{background:var(--border)}
+.review-q-num{font-weight:700;color:var(--text);font-size:14px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.review-status{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;flex-shrink:0}
+.review-status.correct{background:var(--success-bg);color:var(--success-dark)}
+.review-status.wrong{background:var(--danger-bg);color:var(--danger-dark)}
+.review-status.skipped{background:var(--warning-bg);color:var(--warning-dark)}
+.review-item-body{padding:16px;display:none;animation:fadeIn .3s}
+.review-item-body.show{display:block}
+.review-question-text{font-weight:600;margin-bottom:12px;color:var(--text)}
+.review-options-list{display:flex;flex-direction:column;gap:6px}
+.review-opt{padding:10px 14px;border-radius:var(--radius-sm);font-size:14px;border:1px solid var(--border)}
+.review-opt.correct{background:var(--success-bg);border-color:var(--success);color:var(--success-dark);font-weight:600}
+.review-opt.wrong{background:var(--danger-bg);border-color:var(--danger);color:var(--danger-dark);text-decoration:line-through}
+.review-opt.neutral{background:var(--bg2)}
+.results-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;padding:20px 0}
+
+/* ===== MODALS ===== */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.show{display:flex;animation:fadeIn .3s}
+.modal{background:var(--card);border-radius:var(--radius-lg);max-width:700px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-xl);border:1px solid var(--border);animation:modalIn .4s cubic-bezier(.4,0,.2,1)}
+@keyframes modalIn{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--card);z-index:1}
+.modal-title{font-size:18px;font-weight:700}
+.modal-close{width:32px;height:32px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--text2);transition:all .25s}
+.modal-close:hover{background:var(--danger);color:white;transform:rotate(90deg)}
+.modal-body{padding:24px}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;position:sticky;bottom:0;background:var(--card)}
+
+/* ===== SLIDE PANELS ===== */
+.slide-panel{position:fixed;top:0;right:-500px;width:480px;max-width:100%;height:100%;background:var(--card);box-shadow:var(--shadow-xl);z-index:2000;transition:right .4s cubic-bezier(.4,0,.2,1);overflow-y:auto;border-left:1px solid var(--border);will-change:transform}
+.slide-panel.open{right:0}
+.slide-panel-header{padding:20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--card);z-index:1}
+.slide-panel-title{font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px}
+.slide-panel-body{padding:20px}
+.slide-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1999;display:none;backdrop-filter:blur(2px)}
+.slide-overlay.show{display:block;animation:fadeIn .3s}
+
+/* ===== SETTINGS ===== */
+.setting-group{margin-bottom:24px}
+.setting-group-title{font-size:13px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.setting-item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+.setting-item:last-child{border-bottom:none}
+.setting-label{font-size:14px;color:var(--text);font-weight:500;flex:1}
+.setting-hint{font-size:11px;color:var(--text3);margin-top:2px}
+.setting-control{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.setting-control input[type="number"]{width:80px;padding:6px 10px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;text-align:center;background:var(--card);color:var(--text)}
+.toggle-switch{position:relative;width:48px;height:26px;background:var(--border2);border-radius:13px;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);flex-shrink:0}
+.toggle-switch.active{background:var(--primary)}
+.toggle-switch::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:white;border-radius:50%;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:var(--shadow)}
+.toggle-switch.active::after{left:25px}
+
+/* ===== TO-DO ===== */
+.todo-form{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.todo-list{display:flex;flex-direction:column;gap:8px}
+.todo-item{background:var(--bg2);border-radius:var(--radius-sm);padding:12px;border:1px solid var(--border);transition:all .25s}
+.todo-item:hover{box-shadow:var(--shadow-md);transform:translateX(2px)}
+.todo-item.completed{opacity:.6}
+.todo-item.completed .todo-name{text-decoration:line-through}
+.todo-item-header{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.todo-checkbox{width:22px;height:22px;border-radius:6px;border:2px solid var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s}
+.todo-checkbox:hover{border-color:var(--success)}
+.todo-checkbox.checked{background:var(--success);border-color:var(--success)}
+.todo-checkbox.checked::after{content:'✓';color:white;font-size:13px;font-weight:700}
+.todo-name{font-weight:600;color:var(--text);flex:1;font-size:14px}
+.todo-meta{font-size:11px;color:var(--text3);display:flex;gap:12px;flex-wrap:wrap}
+.todo-actions{display:flex;gap:4px}
+.todo-actions button{width:28px;height:28px;border-radius:6px;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s}
+.todo-actions button:hover{background:var(--border);transform:scale(1.1)}
+.todo-actions button.delete:hover{background:var(--danger);color:white}
+
+/* ===== PROMPT GENERATOR ===== */
+.prompt-form{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;padding:16px;background:var(--bg2);border-radius:var(--radius);border:1px solid var(--border)}
+.prompt-form select,.prompt-form input{padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;background:var(--card);color:var(--text);width:100%}
+.custom-instructions-box{background:var(--bg2);border:2px dashed var(--border2);border-radius:var(--radius);padding:16px;margin-bottom:16px;position:relative}
+.custom-instructions-box .ci-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.custom-instructions-box .ci-title{font-size:14px;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:6px}
+.custom-instructions-box .ci-actions{display:flex;gap:6px}
+.custom-instructions-box textarea{width:100%;min-height:100px;padding:10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--card);color:var(--text);resize:vertical;font-family:'Courier New',monospace;line-height:1.6}
+.subject-list{display:flex;flex-direction:column;gap:10px}
+.subject-item{background:var(--bg2);border-radius:var(--radius);padding:14px;border:1px solid var(--border);transition:all .25s}
+.subject-item:hover{border-color:var(--primary-light);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.subject-item.universal{background:linear-gradient(135deg,var(--primary-bg),var(--card));border:2px dashed var(--primary)}
+.subject-name{font-weight:700;color:var(--primary);font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.prompt-template{background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:var(--radius-sm);font-family:'Courier New',monospace;font-size:11px;overflow-x:auto;white-space:pre-wrap;margin-bottom:10px;max-height:120px;overflow-y:auto;line-height:1.5}
+.subject-actions{display:flex;gap:6px;flex-wrap:wrap}
+.subject-actions button{flex:1;padding:8px;border-radius:var(--radius-sm);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:4px;min-width:80px;transition:all .2s}
+.subject-actions button:hover{transform:translateY(-2px)}
+
+/* ===== FORMAT ENGINE ===== */
+.format-tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.format-tab{padding:8px 14px;border-radius:var(--radius-sm);background:var(--bg2);font-size:13px;font-weight:600;color:var(--text2);border:1px solid var(--border);display:flex;align-items:center;gap:6px;cursor:pointer;transition:all .2s}
+.format-tab:hover{border-color:var(--primary)}
+.format-tab.active{background:var(--primary);color:white;border-color:var(--primary)}
+.format-preview{background:#1e1e1e;color:#d4d4d4;padding:16px;border-radius:var(--radius-sm);font-family:'Courier New',monospace;font-size:12px;overflow-x:auto;white-space:pre;margin-bottom:12px;max-height:200px;overflow-y:auto;position:relative}
+.copy-format-btn{position:absolute;top:8px;right:8px;padding:4px 10px;border-radius:6px;background:var(--primary);color:white;font-size:11px;font-weight:600;transition:all .2s}
+.copy-format-btn:hover{background:var(--primary-dark);transform:scale(1.05)}
+.question-editor{border:2px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;background:var(--bg2)}
+.question-editor-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.question-editor-num{font-weight:700;color:var(--primary)}
+.option-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+.option-row input[type="radio"]{width:18px;height:18px;accent-color:var(--primary)}
+.option-row input[type="text"]{flex:1;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:14px;background:var(--card);color:var(--text)}
+.option-row button{width:32px;height:32px;border-radius:50%;background:var(--danger);color:white;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:all .2s}
+.option-row button:hover{transform:scale(1.1) rotate(90deg)}
+.add-option-btn{width:100%;padding:8px;border-radius:var(--radius-sm);background:var(--bg2);color:var(--text2);font-size:13px;font-weight:600;margin-top:8px;border:1px dashed var(--border);transition:all .2s}
+.add-option-btn:hover{background:var(--border);border-color:var(--primary);color:var(--primary)}
+
+/* ===== TOAST ===== */
+.toast-container{position:fixed;top:80px;right:20px;z-index:3000;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{background:var(--card);padding:14px 20px;border-radius:var(--radius);box-shadow:var(--shadow-xl);display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;animation:toastIn .4s cubic-bezier(.4,0,.2,1);min-width:250px;border-left:4px solid var(--primary);border:1px solid var(--border);pointer-events:auto}
+@keyframes toastIn{from{opacity:0;transform:translateX(100px) scale(.9)}to{opacity:1;transform:translateX(0) scale(1)}}
+.toast.success{border-left-color:var(--success)}
+.toast.error{border-left-color:var(--danger)}
+.toast.warning{border-left-color:var(--warning)}
+
+/* ===== CONTACT/DEV FLOATING ICON ===== */
+.floating-dev-btn{position:fixed;bottom:20px;left:20px;width:60px;height:60px;background:linear-gradient(135deg,var(--primary),#7c3aed);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:28px;box-shadow:var(--shadow-lg);cursor:pointer;z-index:2000;transition:all .3s cubic-bezier(.4,0,.2,1);animation:floatBounce 3s infinite}
+.floating-dev-btn:hover{transform:scale(1.1) rotate(10deg);box-shadow:var(--shadow-xl)}
+@keyframes floatBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* Contact Modal */
+.contact-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(5px);z-index:3000;display:none;align-items:center;justify-content:center;padding:20px}
+.contact-modal.active{display:flex;animation:fadeIn .3s}
+.contact-box{background:var(--card);border-radius:var(--radius-xl);width:100%;max-width:450px;box-shadow:var(--shadow-xl);overflow:hidden;border:1px solid var(--border);position:relative;animation:slideUp .4s}
+.contact-header{background:linear-gradient(135deg,var(--primary),#7c3aed);padding:24px;color:white;text-align:center;position:relative}
+.contact-header h2{font-size:24px;font-weight:800;margin-bottom:4px}
+.contact-close{position:absolute;top:15px;right:15px;background:rgba(255,255,255,.2);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;transition:all .2s;cursor:pointer;border:none}
+.contact-close:hover{background:var(--danger);transform:rotate(90deg)}
+.contact-body{padding:24px;max-height:60vh;overflow-y:auto}
+.contact-item{display:flex;align-items:center;gap:14px;padding:16px;background:var(--bg2);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:12px;transition:all .2s}
+.contact-item:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.c-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;background:var(--card);box-shadow:var(--shadow)}
+.c-info{flex:1}
+.c-title{font-weight:700;font-size:15px;color:var(--text)}
+.c-desc{font-size:12px;color:var(--text2);margin-top:2px}
+.c-actions{display:flex;gap:6px}
+.c-btn{padding:8px;border-radius:8px;background:var(--primary-bg);color:var(--primary);font-size:14px;transition:all .2s;border:none;cursor:pointer}
+.c-btn:hover{background:var(--primary);color:white}
+
+/* Anti Cheat Overlay */
+.cheat-warning-overlay{position:fixed;inset:0;background:rgba(220,38,38,.95);z-index:4000;display:none;align-items:center;justify-content:center;flex-direction:column;color:white;text-align:center;padding:20px}
+.cheat-warning-overlay.active{display:flex;animation:fadeIn .2s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+.exam-main{grid-template-columns:1fr}
+.exam-right{border-left:none;border-top:1px solid var(--border);max-height:none}
+.exam-left{max-height:none}
+.charts-grid{grid-template-columns:1fr}
+.results-score{position:static;transform:none;margin-top:20px;display:flex;justify-content:center}
+.palette-grid{grid-template-columns:repeat(6,1fr)}
+}
+@media(max-width:600px){
+.header{padding:0 10px;gap:4px}
+.logo{font-size:15px}
+.profile-name{display:none}
+.profile-badge{padding:4px}
+.ist-clock{font-size:11px;padding:4px 8px}
+.dashboard{padding:12px}
+.dash-title{font-size:18px}
+.stats-grid{grid-template-columns:1fr 1fr}
+.stat-card{padding:14px}
+.stat-icon{width:44px;height:44px;font-size:22px}
+.stat-info h3{font-size:18px}
+.test-grid{grid-template-columns:1fr}
+.question-card{padding:16px}
+.exam-actions button{min-width:auto;padding:10px 12px;font-size:12px}
+.metrics-grid{grid-template-columns:1fr 1fr}
+.time-inputs{grid-template-columns:1fr}
+.time-presets{grid-template-columns:repeat(2,1fr)}
+.time-display .big-time{font-size:36px}
+.profile-card{padding:24px}
+.slide-panel{width:100%}
+.total-timer-value{font-size:26px}
+}
+
+@media print{
+  body * {visibility:hidden;}
+  #resultsView, #resultsView * {visibility:visible;}
+  #resultsView {position:absolute; left:0; top:0;}
+  .results-actions, .header, .floating-dev-btn {display:none!important;}
+}
+
+.hidden{display:none!important}
+.text-center{text-align:center}
+.mt-1{margin-top:8px}.mt-2{margin-top:16px}.mt-3{margin-top:24px}
+.mb-1{margin-bottom:8px}.mb-2{margin-bottom:16px}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+<body>
+
+<div class="cheat-warning-overlay" id="cheatOverlay">
+  <div style="font-size:80px;margin-bottom:20px">⚠️</div>
+  <h1 style="font-size:32px;margin-bottom:10px">WARNING! TAB SWITCH DETECTED</h1>
+  <p style="font-size:18px;margin-bottom:20px">You navigated away from the exam window.</p>
+  <p style="font-size:24px;font-weight:bold;margin-bottom:30px">Strikes: <span id="cheatStrikes">1</span> / 3</p>
+  <button class="btn btn-card" style="background:white;color:red;font-size:20px;padding:15px 40px;border-radius:50px;border:none;cursor:pointer;font-weight:bold" onclick="dismissCheatWarning()">I UNDERSTAND, RETURN TO EXAM</button>
+</div>
+
+<div class="floating-dev-btn" onclick="openContactModal()" title="Developer Info & Resources">
+  <i class="fa-solid fa-robot"></i>
+</div>
+
+<div class="contact-modal" id="contactModal">
+  <div class="contact-box">
+    <div class="contact-header">
+      <button class="contact-close" onclick="closeContactModal()"><i class="fa-solid fa-xmark"></i></button>
+      <h2>Provakar Biswas</h2>
+      <p style="font-size:13px;opacity:0.9">Developer & Creator</p>
+    </div>
+    <div class="contact-body">
+      
+      <div class="contact-item">
+        <div class="c-icon" style="color:#e1306c"><i class="fa-brands fa-instagram"></i></div>
+        <div class="c-info"><div class="c-title">Instagram</div><div class="c-desc">Follow & DM me</div></div>
+        <div class="c-actions">
+          <button class="c-btn" onclick="copyLink('https://www.instagram.com/provakar.biswas.3914?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==', 'Instagram Link Copied!')" title="Copy"><i class="fa-solid fa-copy"></i></button>
+          <button class="c-btn" onclick="window.open('https://www.instagram.com/provakar.biswas.3914?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==', '_blank')" title="Open"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon" style="color:#ea4335"><i class="fa-solid fa-envelope"></i></div>
+        <div class="c-info"><div class="c-title">Gmail</div><div class="c-desc">provakarb541@gmail.com</div></div>
+        <div class="c-actions">
+          <button class="c-btn" onclick="copyLink('provakarb541@gmail.com', 'Email Copied!')" title="Copy"><i class="fa-solid fa-copy"></i></button>
+          <button class="c-btn" onclick="window.location.href='mailto:provakarb541@gmail.com'" title="Email"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
+
+      <h3 style="font-size:14px;color:var(--text2);margin:20px 0 10px;text-transform:uppercase">📚 Resource Documents</h3>
+      
+      <div class="contact-item">
+        <div class="c-icon" style="color:#4285f4"><i class="fa-solid fa-file-word"></i></div>
+        <div class="c-info"><div class="c-title">All Exam Prompts</div><div class="c-desc">Subject theory preparation</div></div>
+        <div class="c-actions">
+          <button class="c-btn" onclick="copyLink('https://docs.google.com/document/d/1Venz9BpRRIVq0UFUnjzZj0itwWJeJTCw6MmJLrrdqIQ/edit?usp=sharing', 'Prompt Doc Copied!')"><i class="fa-solid fa-copy"></i></button>
+          <button class="c-btn" onclick="window.open('https://docs.google.com/document/d/1Venz9BpRRIVq0UFUnjzZj0itwWJeJTCw6MmJLrrdqIQ/edit?usp=sharing', '_blank')"><i class="fa-solid fa-link"></i></button>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon" style="color:#fbbc05"><i class="fa-solid fa-note-sticky"></i></div>
+        <div class="c-info"><div class="c-title">Personal Notes</div><div class="c-desc">Key study materials</div></div>
+        <div class="c-actions">
+          <button class="c-btn" onclick="copyLink('https://docs.google.com/document/d/1sN66Wr4CGw2RnRDLxDw_DbPC3IzhwqtarVO6pHRllWc/edit?usp=sharing', 'Notes Doc Copied!')"><i class="fa-solid fa-copy"></i></button>
+          <button class="c-btn" onclick="window.open('https://docs.google.com/document/d/1sN66Wr4CGw2RnRDLxDw_DbPC3IzhwqtarVO6pHRllWc/edit?usp=sharing', '_blank')"><i class="fa-solid fa-link"></i></button>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon" style="color:#34a853"><i class="fa-solid fa-folder-open"></i></div>
+        <div class="c-info"><div class="c-title">Future Use Archive</div><div class="c-desc">Extra resources</div></div>
+        <div class="c-actions">
+          <button class="c-btn" onclick="copyLink('https://docs.google.com/document/d/1UFk-c6z9M7HuxIEh5rWuzOnDdDdzI2u4NIRh23bZDJ8/edit?usp=sharing', 'Archive Doc Copied!')"><i class="fa-solid fa-copy"></i></button>
+          <button class="c-btn" onclick="window.open('https://docs.google.com/document/d/1UFk-c6z9M7HuxIEh5rWuzOnDdDdzI2u4NIRh23bZDJ8/edit?usp=sharing', '_blank')"><i class="fa-solid fa-link"></i></button>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon" style="color:#7c3aed"><i class="brands fa-google-drive"></i><i class="fa-brands fa-google-drive"></i></div>
+        <div class="c-info"><div class="c-title">Private Drive</div><div class="c-desc">Exclusive personal notes</div></div>
+        <div class="c-actions">
+          <button class="c-btn" onclick="copyLink('https://drive.google.com/drive/folders/1O798TAQdsBHop8iF2_1_OZat1HIgraLN?usp=drive_link', 'Drive Link Copied!')"><i class="fa-solid fa-copy"></i></button>
+          <button class="c-btn" onclick="window.open('https://drive.google.com/drive/folders/1O798TAQdsBHop8iF2_1_OZat1HIgraLN?usp=drive_link', '_blank')"><i class="fa-solid fa-link"></i></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<header class="header" id="mainHeader" style="display:none">
+<div class="header-left">
+<button class="header-btn" onclick="goBack()" title="Back"><i class="fa-solid fa-arrow-left"></i></button>
+<button class="header-btn" onclick="goHome()" title="Home"><i class="fa-solid fa-house"></i></button>
+<div class="logo">PROVAKAR</div>
+</div>
+<div class="header-center">
+<div class="ist-clock" id="istClock">🕐 --:--:-- IST</div>
+<div class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+<div class="knob"></div>
+</div>
+</div>
+<div class="header-right">
+<button class="header-btn" onclick="openPanel('todoPanel')" title="To-Do"><i class="fa-solid fa-clipboard-list"></i></button>
+<button class="header-btn" onclick="openPanel('promptPanel')" title="Prompt Generator"><i class="fa-solid fa-robot"></i></button>
+<button class="header-btn" onclick="openPanel('settingsPanel')" title="Settings"><i class="fa-solid fa-gear"></i></button>
+<div class="profile-badge" onclick="openProfileEdit()">
+<div class="profile-img" id="headerProfileImg">U</div>
+<div class="profile-name" id="headerProfileName">User</div>
+</div>
+</div>
+</header>
+
+<div class="view active" id="profileView">
+<div class="profile-setup">
+<div class="profile-card">
+<div style="text-align:center;font-size:48px;margin-bottom:8px">🎯</div>
+<h1>PROVAKAR</h1>
+<p class="subtitle">Create your profile to get started</p>
+<div class="photo-upload" id="photoUpload">
+<span class="upload-icon">📷</span>
+<input type="file" accept="image/*" onchange="handlePhotoUpload(event)">
+</div>
+<div class="form-group">
+<label class="form-label">Your Name</label>
+<input type="text" class="form-input" id="profileNameInput" placeholder="Enter your full name" maxlength="30">
+</div>
+<button class="btn btn-primary btn-full btn-lg" onclick="saveProfile()">🚀 Start Practice</button>
+<p style="text-align:center;margin-top:16px;font-size:12px;color:var(--text3)">Your data is saved locally on your device</p>
+</div>
+</div>
+</div>
+
+<div class="view" id="dashboardView">
+<div class="dashboard">
+<div class="dash-header">
+<div class="dash-title">📚 My Mock Tests</div>
+<div class="dash-actions">
+<button class="btn btn-primary" onclick="openCreateModal()">➕ New Test</button>
+</div>
+</div>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-icon blue">📚</div><div class="stat-info"><h3 id="statTests">0</h3><p>Total Tests</p></div></div>
+<div class="stat-card"><div class="stat-icon green">✅</div><div class="stat-info"><h3 id="statAttempts">0</h3><p>Attempts</p></div></div>
+<div class="stat-card"><div class="stat-icon orange">📝</div><div class="stat-info"><h3 id="statQuestions">0</h3><p>Total Questions</p></div></div>
+<div class="stat-card"><div class="stat-icon red">🏆</div><div class="stat-info"><h3 id="statBest">0%</h3><p>Best Score</p></div></div>
+</div>
+<div class="section">
+<div class="section-header"><div class="section-title">📋 Your Test Sets</div></div>
+<div id="testGrid" class="test-grid"></div>
+</div>
+</div>
+</div>
+
+<div class="view" id="timeConfigView">
+<div class="time-config">
+<div class="time-config-card">
+<div style="text-align:center;font-size:48px;margin-bottom:8px">⏱️</div>
+<h2 id="tcTestName">Test Configuration</h2>
+<p class="subtitle">Configure your exam timer settings</p>
+<div class="time-display">
+<div class="big-time" id="tcTotalTime">20:00</div>
+<div class="time-label">Total Exam Duration</div>
+</div>
+<div class="time-inputs">
+<div class="time-input-group"><label>Minutes</label><input type="number" id="tcMinutes" value="20" min="1" max="180" onchange="updateTCDisplay()"></div>
+<div class="time-input-group"><label>Seconds</label><input type="number" id="tcSeconds" value="0" min="0" max="59" onchange="updateTCDisplay()"></div>
+</div>
+<div class="time-presets">
+<button class="preset-btn" onclick="setTCTime(10,0)">10 Min</button>
+<button class="preset-btn" onclick="setTCTime(20,0)">20 Min</button>
+<button class="preset-btn" onclick="setTCTime(30,0)">30 Min</button>
+<button class="preset-btn" onclick="setTCTime(45,0)">45 Min</button>
+<button class="preset-btn" onclick="setTCTime(60,0)">60 Min</button>
+<button class="preset-btn" onclick="setTCTime(90,0)">90 Min</button>
+</div>
+<div style="background:var(--bg2);padding:12px;border-radius:var(--radius-sm);margin-bottom:20px;font-size:13px;color:var(--text2);border:1px solid var(--border)">
+<strong>📊 Test Info:</strong> <span id="tcInfo">0 questions • 30s per question</span>
+</div>
+<div style="display:flex;gap:10px">
+<button class="btn btn-secondary" style="flex:1" onclick="showDashboard()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+<button class="btn btn-primary" style="flex:1" onclick="launchExam()">🚀 Start Exam</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="view" id="examView">
+<div class="exam-container">
+<div class="exam-main">
+<div class="exam-left" id="examLeft">
+  
+  <div class="exam-tools-bar">
+    <div class="font-resizer">
+      <button onclick="changeFontSize(-1)">A-</button>
+      <button onclick="changeFontSize(0)">A</button>
+      <button onclick="changeFontSize(1)">A+</button>
+    </div>
+    <button class="tool-btn" onclick="readQuestion()"><i class="fa-solid fa-volume-high"></i> Read</button>
+    <button class="tool-btn" onclick="toggleCalculator()"><i class="fa-solid fa-calculator"></i> Calculator</button>
+    <button class="tool-btn" onclick="toggleScratchpad()"><i class="fa-solid fa-pen-nib"></i> Rough Sheet</button>
+  </div>
+
+<div class="question-card" id="questionCardWrap">
+<div class="question-top-bar">
+<div class="question-top-left">
+<div class="per-q-timer-box normal" id="perQTimer">
+<span style="font-size:14px">⏱️</span>
+<span id="perQTimerText">30s</span>
+</div>
+</div>
+<div class="question-top-right">
+<div class="question-number">Question <strong id="qNumDisplay">1</strong> of <strong id="qTotalDisplay">10</strong></div>
+</div>
+</div>
+<div class="question-text" id="questionText">Loading...</div>
+<div class="options-list" id="optionsList"></div>
+<div class="exam-actions">
+<button class="btn-save" onclick="saveAndNext()">💾 Save & Next</button>
+<button class="btn-mark" id="markBtn" onclick="toggleMark()">🔖 Mark</button>
+<button class="btn-clear" onclick="clearResponse()">🗑️ Clear</button>
+<button class="btn-pause" id="pauseBtn" onclick="togglePause()">⏸️ Pause</button>
+<button class="btn-submit-exam" onclick="confirmSubmit()">📤 Submit</button>
+</div>
+</div>
+
+<div class="pause-overlay" id="pauseOverlay">
+  <div class="pause-icon">⏸️</div>
+  <h2>Exam Paused Successfully</h2>
+  <p style="color:var(--text2);margin-bottom:20px;color:white;">All timers and actions are completely frozen.</p>
+  <button class="resume-btn" onclick="togglePause()">▶️ RESUME EXAM</button>
+</div>
+
+<div class="scratchpad-container" id="scratchpad">
+  <div class="scratchpad-tools">
+    <button class="c-btn" onclick="clearCanvas()"><i class="fa-solid fa-eraser"></i> Clear</button>
+    <button class="c-btn" style="color:var(--danger)" onclick="toggleScratchpad()"><i class="fa-solid fa-xmark"></i> Close</button>
+  </div>
+  <canvas id="roughCanvas"></canvas>
+</div>
+
+<div class="calculator-modal" id="calculator">
+  <div class="calc-header" id="calcHeader">
+    <span>Calculator</span>
+    <button style="color:white;background:transparent" onclick="toggleCalculator()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <input type="text" class="calc-display" id="calcDisplay" disabled value="0">
+  <div class="calc-keys">
+    <button onclick="calcInput('7')">7</button><button onclick="calcInput('8')">8</button><button onclick="calcInput('9')">9</button><button class="op" onclick="calcInput('/')">÷</button>
+    <button onclick="calcInput('4')">4</button><button onclick="calcInput('5')">5</button><button onclick="calcInput('6')">6</button><button class="op" onclick="calcInput('*')">×</button>
+    <button onclick="calcInput('1')">1</button><button onclick="calcInput('2')">2</button><button onclick="calcInput('3')">3</button><button class="op" onclick="calcInput('-')">-</button>
+    <button onclick="calcInput('C')" style="color:var(--danger)">C</button><button onclick="calcInput('0')">0</button><button onclick="calcCalculate()" class="op" style="background:var(--success);color:white">=</button><button class="op" onclick="calcInput('+')">+</button>
+  </div>
+</div>
+
+</div>
+<div class="exam-right">
+<div class="total-timer-card" id="totalTimerCard">
+<div class="total-timer-label">⏱️ Total Test Time</div>
+<div class="total-timer-value" id="totalTimerValue">20:00</div>
+</div>
+<div class="palette-section">
+<div class="palette-title">📊 Question Palette</div>
+<div class="palette-grid" id="paletteGrid"></div>
+<div class="palette-legend">
+<div class="legend-item"><div class="legend-dot current"></div> Current</div>
+<div class="legend-item"><div class="legend-dot answered"></div> Answered</div>
+<div class="legend-item"><div class="legend-dot marked"></div> Marked</div>
+<div class="legend-item"><div class="legend-dot wrong"></div> Wrong</div>
+<div class="legend-item"><div class="legend-dot not-visited"></div> Not Visited</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="view" id="resultsView">
+<div class="results-container">
+<div class="results-header">
+<h1 id="resultTitle">Test Completed!</h1>
+<p id="resultSubtitle">Performance summary</p>
+<div class="results-score">
+<div class="results-score-circle">
+<div class="results-score-num" id="resultScore">0</div>
+<div class="results-score-total" id="resultTotal">/ 10</div>
+</div>
+</div>
+</div>
+<div class="metrics-grid">
+<div class="metric-card correct"><div class="metric-icon">✅</div><div class="metric-value" id="resCorrect">0</div><div class="metric-label">Correct</div></div>
+<div class="metric-card wrong"><div class="metric-icon">❌</div><div class="metric-value" id="resWrong">0</div><div class="metric-label">Wrong</div></div>
+<div class="metric-card skipped"><div class="metric-icon">⏭️</div><div class="metric-value" id="resSkipped">0</div><div class="metric-label">Skipped</div></div>
+<div class="metric-card time"><div class="metric-icon">⏱️</div><div class="metric-value" id="resTime">0s</div><div class="metric-label">Total Time</div></div>
+</div>
+<div class="charts-grid">
+<div class="chart-card"><div class="chart-title">📊 Answer Distribution</div><div class="chart-container" id="pieChartContainer"></div></div>
+<div class="chart-card"><div class="chart-title">⏱️ Time Per Question</div><div class="chart-container" id="barChartContainer"></div></div>
+</div>
+<div class="review-section">
+<div class="chart-title">📋 Detailed Review</div>
+<div id="reviewList"></div>
+</div>
+<div class="results-actions">
+<button class="btn btn-primary" onclick="retryTest()">🔄 Retry</button>
+<button class="btn btn-secondary" onclick="showDashboard()">🏠 Dashboard</button>
+<button class="btn btn-secondary" onclick="downloadResult()">📥 Download</button>
+<button class="btn btn-secondary" onclick="copyResult()">📋 Copy</button>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="createModal">
+<div class="modal">
+<div class="modal-header">
+<div class="modal-title" id="createModalTitle">Create New Test</div>
+<button class="modal-close" onclick="closeModal('createModal')">✕</button>
+</div>
+<div class="modal-body">
+<div class="form-group">
+<label class="form-label">Test Name</label>
+<input type="text" class="form-input" id="testNameInput" placeholder="e.g., GK Bengali Quiz">
+</div>
+<div class="form-group">
+<label class="form-label">Import Questions (Paste JSON)</label>
+<div class="format-tabs">
+<div class="format-tab active" onclick="showFormat('A',event)">Format A</div>
+<div class="format-tab" onclick="showFormat('B',event)">Format B</div>
+<div class="format-tab" onclick="showFormat('C',event)">Format C</div>
+</div>
+<div class="format-preview" id="formatPreview"></div>
+<textarea class="form-input" id="jsonInput" placeholder='Paste your JSON here...' style="min-height:120px;font-family:'Courier New',monospace;font-size:13px;resize:vertical"></textarea>
+<div style="font-size:12px;color:var(--text3);margin:6px 0">Auto-detects all 3 formats. Parser adapts automatically.</div>
+<button class="btn btn-success btn-full mt-1" onclick="parseAndImport()">📥 Parse & Import Questions</button>
+</div>
+<div class="form-group">
+<label class="form-label">Or Add Questions Manually</label>
+<div id="manualQuestions"></div>
+<button class="btn btn-secondary btn-full mt-1" onclick="addManualQuestion()">➕ Add Question</button>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" onclick="closeModal('createModal')">Cancel</button>
+<button class="btn btn-primary" onclick="saveTest()">💾 Save Test</button>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="submitModal">
+<div class="modal" style="max-width:400px">
+<div class="modal-header"><div class="modal-title" id="submitModalTitle">⚠️ Submit Test?</div><button class="modal-close" onclick="closeModal('submitModal')">✕</button></div>
+<div class="modal-body text-center">
+<div style="font-size:64px;margin-bottom:16px" id="submitModalIcon">⚠️</div>
+<p id="submitMsg">Are you sure?</p>
+</div>
+<div class="modal-footer" id="submitModalFooter">
+<button class="btn btn-secondary" onclick="closeModal('submitModal')">Cancel</button>
+<button class="btn btn-danger" onclick="submitTest()">Yes, Submit</button>
+</div>
+</div>
+</div>
+
+<div class="slide-overlay" id="settingsOverlay" onclick="closePanel('settingsPanel')"></div>
+<div class="slide-panel" id="settingsPanel">
+<div class="slide-panel-header">
+<div class="slide-panel-title">⚙️ Settings</div>
+<button class="modal-close" onclick="closePanel('settingsPanel')">✕</button>
+</div>
+<div class="slide-panel-body">
+<div class="setting-group">
+<div class="setting-group-title">👤 Profile</div>
+<button class="btn btn-secondary btn-full" onclick="openProfileEdit();closePanel('settingsPanel')">✏️ Edit Profile</button>
+</div>
+<div class="setting-group">
+<div class="setting-group-title">🎨 Appearance</div>
+<div class="setting-item">
+<div><div class="setting-label">Dark Mode</div><div class="setting-hint">Switch between light and dark themes</div></div>
+<div class="setting-control"><div class="toggle-switch" id="setDark" onclick="toggleSetting('darkMode',this)"></div></div>
+</div>
+</div>
+<div class="setting-group">
+<div class="setting-group-title">🕐 Clock & Timers</div>
+<div class="setting-item">
+<div><div class="setting-label">Show IST Clock</div><div class="setting-hint">Display real-time IST clock in header</div></div>
+<div class="setting-control"><div class="toggle-switch active" id="setClock" onclick="toggleSetting('showClock',this)"></div></div>
+</div>
+<div class="setting-item">
+<div><div class="setting-label">Show Total Test Timer</div><div class="setting-hint">Display main countdown timer in exam</div></div>
+<div class="setting-control"><div class="toggle-switch active" id="setTotalTimer" onclick="toggleSetting('showTotalTimer',this)"></div></div>
+</div>
+<div class="setting-item">
+<div class="setting-label">Time per question (seconds)</div>
+<div class="setting-control"><input type="number" id="setTimePerQ" value="30" min="5" max="300" onchange="updateSetting('timePerQuestion',this.value)"></div>
+</div>
+<div class="setting-item">
+<div><div class="setting-label">Enable overtime counter</div><div class="setting-hint">Show +time after question time expires</div></div>
+<div class="setting-control"><div class="toggle-switch active" id="setOvertime" onclick="toggleSetting('overtime',this)"></div></div>
+</div>
+<div class="setting-item">
+<div class="setting-label">Warning at (seconds)</div>
+<div class="setting-control"><input type="number" id="setWarning" value="10" min="3" max="30" onchange="updateSetting('warningAt',this.value)"></div>
+</div>
+</div>
+<div class="setting-group">
+<div class="setting-group-title">🎯 Scoring</div>
+<div class="setting-item">
+<div class="setting-label">Positive marking</div>
+<div class="setting-control"><input type="number" id="setPositive" value="1" min="0" max="10" onchange="updateSetting('positiveMark',this.value)"></div>
+</div>
+<div class="setting-item">
+<div class="setting-label">Negative marking</div>
+<div class="setting-control"><input type="number" id="setNegative" value="0" min="0" max="10" step="0.25" onchange="updateSetting('negativeMark',this.value)"></div>
+</div>
+</div>
+<div class="setting-group">
+<div class="setting-group-title">🔔 Feedback</div>
+<div class="setting-item">
+<div><div class="setting-label">Instant feedback mode</div><div class="setting-hint">Show correct/wrong immediately</div></div>
+<div class="setting-control"><div class="toggle-switch" id="setInstant" onclick="toggleSetting('instantFeedback',this)"></div></div>
+</div>
+<div class="setting-item">
+<div class="setting-label">Sound effects</div>
+<div class="setting-control"><div class="toggle-switch active" id="setSound" onclick="toggleSetting('sound',this)"></div></div>
+</div>
+</div>
+<div class="setting-group">
+<div class="setting-group-title">💾 Data Management</div>
+<button class="btn btn-secondary btn-full mb-1" onclick="exportAllData()">📤 Export All Data</button>
+<button class="btn btn-secondary btn-full mb-1" onclick="document.getElementById('importFile').click()">📥 Import Data</button>
+<input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+<button class="btn btn-danger btn-full" onclick="clearAllData()">🗑️ Clear All Data</button>
+</div>
+</div>
+</div>
+
+<div class="slide-overlay" id="todoOverlay" onclick="closePanel('todoPanel')"></div>
+<div class="slide-panel" id="todoPanel">
+<div class="slide-panel-header">
+<div class="slide-panel-title">📋 Daily To-Do List</div>
+<button class="modal-close" onclick="closePanel('todoPanel')">✕</button>
+</div>
+<div class="slide-panel-body">
+<div class="todo-form">
+<input type="text" class="form-input" id="todoName" placeholder="Task name...">
+<input type="date" class="form-input" id="todoDate">
+<input type="time" class="form-input" id="todoTime">
+<textarea class="form-input" id="todoDesc" placeholder="Description (optional)" style="min-height:60px;resize:vertical"></textarea>
+<button class="btn btn-primary btn-full" onclick="addTodo()">➕ Add Task</button>
+</div>
+<div id="todoList" class="todo-list"></div>
+</div>
+</div>
+
+<div class="slide-overlay" id="promptOverlay" onclick="closePanel('promptPanel')"></div>
+<div class="slide-panel" id="promptPanel">
+<div class="slide-panel-header">
+<div class="slide-panel-title">🤖 Prompt Generator</div>
+<button class="modal-close" onclick="closePanel('promptPanel')">✕</button>
+</div>
+<div class="slide-panel-body">
+<div style="background:var(--info-bg);padding:12px;border-radius:var(--radius-sm);margin-bottom:16px;font-size:13px;color:var(--text2);border:1px solid var(--border)">
+<strong>💡 Tip:</strong> Fill in the form below, customize your instructions, then click "Generate & Copy" to get a perfect expert-level AI prompt.
+</div>
+
+<div class="prompt-form">
+<div class="form-group">
+<label class="form-label">📚 Subject</label>
+<input class="form-input" id="pgSubject" list="subjectOptions" placeholder="Select or type your custom subject...">
+<datalist id="subjectOptions">
+<option value="General Knowledge">
+<option value="Rural Development">
+<option value="Quantitative Aptitude">
+<option value="Reasoning Ability">
+<option value="English Language">
+<option value="General Awareness">
+<option value="History">
+<option value="Geography">
+<option value="General Science">
+<option value="Current Affairs">
+<option value="Computer Knowledge">
+<option value="Bengali Literature">
+<option value="Indian Polity">
+<option value="Economics">
+</datalist>
+</div>
+<div class="form-group">
+<label class="form-label">📖 Chapter / Topic</label>
+<input type="text" class="form-input" id="pgChapter" placeholder="e.g., Percentage, Blood Relations, Tenses">
+</div>
+<div class="form-group">
+<label class="form-label">🎯 Exam Name</label>
+<input type="text" class="form-input" id="pgExam" placeholder="e.g., WBCS, SSC CGL, Banking, Railway">
+</div>
+<div class="form-group">
+<label class="form-label">🔢 Number of Questions</label>
+<input type="number" class="form-input" id="pgNumber" value="10" min="1" max="100">
+</div>
+<div class="form-group">
+<label class="form-label">🌐 Language</label>
+<select class="form-input" id="pgLanguage">
+<option value="Bengali">Bengali (বাংলা)</option>
+<option value="English">English</option>
+<option value="Mixed (Bengali + English)">Mixed (Bengali + English)</option>
+<option value="Mixed (Bengali + Hindi)">Mixed (Bengali + Hindi)</option>
+<option value="Hindi">Hindi (हिंदी)</option>
+</select>
+</div>
+</div>
+
+<div class="custom-instructions-box">
+<div class="ci-header">
+<div class="ci-title">📝 Custom System Instructions</div>
+<div class="ci-actions">
+<button class="btn btn-sm btn-secondary" onclick="editCustomInstructions()">✏️ Edit</button>
+<button class="btn btn-sm btn-secondary" onclick="copyCustomInstructions()">📋 Copy</button>
+<button class="btn btn-sm btn-danger" onclick="deleteCustomInstructions()">🗑️ Reset</button>
+</div>
+</div>
+<textarea id="customInstructionsText" placeholder="Add your custom rules here...">Structure must match Format A, and ensure options are distributed randomly. Questions should be exam-standard difficulty with realistic traps and distractors.</textarea>
+<div style="font-size:11px;color:var(--text3);margin-top:6px">💡 These instructions will be injected into the final prompt</div>
+</div>
+
+<button class="btn btn-primary btn-full btn-lg" onclick="generateAndCopyPrompt()">✨ Generate & Copy Perfect Prompt</button>
+
+<div style="margin-top:20px">
+<div class="setting-group-title">📚 Subject Templates</div>
+<div class="subject-list" id="subjectList"></div>
+</div>
+</div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// ===== STATE =====
+const State = {
+  profile: { name: '', photo: '' },
+  tests: [],
+  attempts: [],
+  todos: [],
+  customInstructions: "Structure must match Format A, and ensure options are distributed randomly. Questions should be exam-standard difficulty with realistic traps and distractors.",
+  settings: {
+    timePerQuestion: 30,
+    overtime: true,
+    warningAt: 10,
+    positiveMark: 1,
+    negativeMark: 0,
+    instantFeedback: false,
+    sound: true,
+    darkMode: false,
+    showClock: true,
+    showTotalTimer: true
+  },
+  currentTest: null,
+  currentQ: 0,
+  answers: [],
+  marked: [],
+  visited: [],
+  timeSpent: [],
+  timer: null,
+  timeLeft: 30,
+  overtimeSec: 0,
+  totalExamTime: 0,
+  totalExamDuration: 1200,
+  totalTimer: null,
+  isPaused: false,
+  isExamActive: false,
+  editingTestId: null,
+  manualQuestions: [],
+  viewHistory: ['profileView'],
+  
+  // Ultimate feature additions
+  cheatWarnings: 0,
+  calcValue: ''
+};
+
+// ===== LINK SYSTEM FOR DEV CONTACT =====
+function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
+function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
+function copyLink(text, msg) {
+  copyToClipboardFallback(text, msg);
+}
+
+// ===== CLIPBOARD FALLBACK =====
+function copyToClipboardFallback(text, successMsg) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text)
+      .then(() => showToast(successMsg, 'success'))
+      .catch(() => execCommandFallback(text, successMsg));
+  } else {
+    execCommandFallback(text, successMsg);
+  }
+}
+function execCommandFallback(text, successMsg) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.top = '0'; ta.style.left = '0'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { document.execCommand('copy'); showToast(successMsg, 'success'); } 
+  catch (err) { showToast('Copy failed on your device', 'error'); }
+  document.body.removeChild(ta);
+}
+
+// ===== STORAGE =====
+function saveToStorage() {
+  try {
+    localStorage.setItem('pv_profile', JSON.stringify(State.profile));
+    localStorage.setItem('pv_tests', JSON.stringify(State.tests));
+    localStorage.setItem('pv_attempts', JSON.stringify(State.attempts));
+    localStorage.setItem('pv_todos', JSON.stringify(State.todos));
+    localStorage.setItem('pv_settings', JSON.stringify(State.settings));
+    localStorage.setItem('pv_custom_instructions', State.customInstructions);
+  } catch(e) { showToast('Storage error: ' + e.message, 'error'); }
+}
+function loadFromStorage() {
+  try {
+    const p = localStorage.getItem('pv_profile'); const t = localStorage.getItem('pv_tests');
+    const a = localStorage.getItem('pv_attempts'); const td = localStorage.getItem('pv_todos');
+    const s = localStorage.getItem('pv_settings'); const ci = localStorage.getItem('pv_custom_instructions');
+    if (p) State.profile = JSON.parse(p); if (t) State.tests = JSON.parse(t);
+    if (a) State.attempts = JSON.parse(a); if (td) State.todos = JSON.parse(td);
+    if (s) State.settings = {...State.settings, ...JSON.parse(s)};
+    if (ci !== null) State.customInstructions = ci;
+    return !!p;
+  } catch(e) { return false; }
+}
+
+// ===== NAVIGATION =====
+function showView(viewId) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(viewId).classList.add('active');
+  const lastView = State.viewHistory[State.viewHistory.length - 1];
+  if (lastView !== viewId) State.viewHistory.push(viewId);
+  if (viewId !== 'profileView') { document.getElementById('mainHeader').style.display = 'flex'; updateHeaderProfile(); } 
+  else { document.getElementById('mainHeader').style.display = 'none'; }
+  window.scrollTo(0, 0);
+}
+function goBack() {
+  if (State.isExamActive) {
+    if (!confirm('Exam is in progress. Go back? Your progress will be lost.')) return;
+    cleanupExam();
+  }
+  State.viewHistory.pop();
+  const prev = State.viewHistory[State.viewHistory.length - 1] || 'dashboardView';
+  showView(prev);
+}
+function goHome() {
+  if (State.isExamActive) {
+    if (!confirm('Exam is in progress. Go home? Your progress will be lost.')) return;
+    cleanupExam();
+  }
+  State.viewHistory = ['dashboardView'];
+  showDashboard();
+}
+
+function cleanupExam() {
+  State.isExamActive = false;
+  State.isPaused = false;
+  clearInterval(State.timer);
+  clearInterval(State.totalTimer);
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+}
+
+// ===== PROFILE =====
+function handlePhotoUpload(event) {
+  const file = event.target.files[0]; if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { showToast('Image too large. Max 2MB.', 'warning'); return; }
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    State.profile.photo = e.target.result;
+    const upload = document.getElementById('photoUpload');
+    upload.innerHTML = `<img src="${e.target.result}"><input type="file" accept="image/*" onchange="handlePhotoUpload(event)">`;
+  };
+  reader.readAsDataURL(file);
+}
+function saveProfile() {
+  const name = document.getElementById('profileNameInput').value.trim();
+  if (!name) { showToast('Please enter your name', 'warning'); return; }
+  State.profile.name = name;
+  saveToStorage(); updateHeaderProfile(); showDashboard();
+  showToast('Profile saved! Welcome, ' + name + ' 🎉', 'success');
+}
+function openProfileEdit() {
+  document.getElementById('profileNameInput').value = State.profile.name;
+  const upload = document.getElementById('photoUpload');
+  if (State.profile.photo) upload.innerHTML = `<img src="${State.profile.photo}"><input type="file" accept="image/*" onchange="handlePhotoUpload(event)">`;
+  else upload.innerHTML = `<span class="upload-icon">📷</span><input type="file" accept="image/*" onchange="handlePhotoUpload(event)">`;
+  showView('profileView');
+}
+function updateHeaderProfile() {
+  const img = document.getElementById('headerProfileImg');
+  const name = document.getElementById('headerProfileName');
+  if (State.profile.photo) img.innerHTML = `<img src="${State.profile.photo}">`;
+  else img.innerHTML = State.profile.name ? State.profile.name.charAt(0).toUpperCase() : 'U';
+  name.textContent = State.profile.name || 'User';
+}
+
+// ===== THEME =====
+function toggleTheme() { State.settings.darkMode = !State.settings.darkMode; applyTheme(); saveToStorage(); }
+function applyTheme() {
+  document.documentElement.setAttribute('data-theme', State.settings.darkMode ? 'dark' : 'light');
+  document.getElementById('themeToggle').classList.toggle('dark', State.settings.darkMode);
+  const setDark = document.getElementById('setDark');
+  if (setDark) setDark.classList.toggle('active', State.settings.darkMode);
+}
+
+// ===== CLOCK =====
+function updateISTClock() {
+  const clockEl = document.getElementById('istClock');
+  if (!State.settings.showClock) { clockEl.classList.add('hidden'); return; }
+  clockEl.classList.remove('hidden');
+  try {
+    const timeString = new Date().toLocaleTimeString('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    clockEl.textContent = `🕐 ${timeString} IST`;
+  } catch(e) {
+    const now = new Date(); const istDate = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (330 * 60000));
+    clockEl.textContent = `🕐 ${String(istDate.getHours()).padStart(2, '0')}:${String(istDate.getMinutes()).padStart(2, '0')}:${String(istDate.getSeconds()).padStart(2, '0')} IST`;
+  }
+}
+
+// ===== DASHBOARD =====
+function showDashboard() { showView('dashboardView'); renderDashboard(); }
+function renderDashboard() {
+  document.getElementById('statTests').textContent = State.tests.length;
+  document.getElementById('statAttempts').textContent = State.attempts.length;
+  document.getElementById('statQuestions').textContent = State.tests.reduce((s, t) => s + t.questions.length, 0);
+  let best = 0; State.attempts.forEach(a => { const p = (a.correct / a.total) * 100; if (p > best) best = p; });
+  document.getElementById('statBest').textContent = Math.round(best) + '%';
+
+  const grid = document.getElementById('testGrid');
+  if (State.tests.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-state-icon">📚</div><h3>No Tests Yet</h3><p>Create your first mock test to get started!</p></div>`;
+    return;
+  }
+  grid.innerHTML = State.tests.map((test, idx) => `
+    <div class="test-card">
+      <div class="test-card-header">
+        <div class="test-card-name">${escapeHtml(test.name)}</div>
+        <div style="position:relative">
+          <button class="menu-btn" onclick="event.stopPropagation();toggleMenu(${idx})">⋮</button>
+          <div class="dropdown" id="menu${idx}">
+            <button onclick="renameTest(${idx})">✏️ Rename</button>
+            <button onclick="duplicateTest(${idx})">📋 Duplicate</button>
+            <button onclick="exportTest(${idx})">📤 Export</button>
+            <button class="danger" onclick="deleteTest(${idx})">🗑️ Delete</button>
+          </div>
+        </div>
+      </div>
+      <div class="test-card-meta">
+        <span class="meta-tag">📝 ${test.questions.length} Qs</span>
+        <span class="meta-tag">⏱️ ${State.settings.timePerQuestion}s/q</span>
+        <span class="meta-tag">🎯 ${State.attempts.filter(a=>a.testId===test.id).length} attempts</span>
+      </div>
+      <div class="test-card-actions">
+        <button class="btn-start" onclick="configureTest(${idx})">▶️ Start</button>
+        <button class="btn-edit" onclick="editTest(${idx})">✏️ Edit</button>
+      </div>
+    </div>
+  `).join('');
+}
+function toggleMenu(idx) {
+  document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+  const m = document.getElementById('menu' + idx); if (m) m.classList.toggle('show');
+}
+document.addEventListener('click', e => { if (!e.target.closest('.test-card-header')) document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show')); });
+
+// ===== TEST CRUD =====
+function openCreateModal() {
+  State.editingTestId = null; State.manualQuestions = [];
+  document.getElementById('createModalTitle').textContent = 'Create New Test';
+  document.getElementById('testNameInput').value = ''; document.getElementById('jsonInput').value = '';
+  document.getElementById('manualQuestions').innerHTML = ''; showFormat('A', null);
+  document.getElementById('createModal').classList.add('show');
+}
+function editTest(idx) {
+  State.editingTestId = idx; const test = State.tests[idx];
+  document.getElementById('createModalTitle').textContent = 'Edit: ' + test.name;
+  document.getElementById('testNameInput').value = test.name;
+  document.getElementById('jsonInput').value = JSON.stringify(test.questions, null, 2);
+  State.manualQuestions = JSON.parse(JSON.stringify(test.questions));
+  renderManualQuestions(); showFormat('A', null); document.getElementById('createModal').classList.add('show');
+}
+function renameTest(idx) { const n = prompt('Enter new name:', State.tests[idx].name); if (n && n.trim()) { State.tests[idx].name = n.trim(); saveToStorage(); renderDashboard(); showToast('Renamed!', 'success'); } }
+function duplicateTest(idx) { const c = JSON.parse(JSON.stringify(State.tests[idx])); c.id = 'test_' + Date.now(); c.name += ' (Copy)'; State.tests.push(c); saveToStorage(); renderDashboard(); showToast('Duplicated!', 'success'); }
+function deleteTest(idx) { if (confirm('Delete "' + State.tests[idx].name + '"?')) { State.tests.splice(idx, 1); saveToStorage(); renderDashboard(); showToast('Deleted!', 'success'); } }
+function exportTest(idx) {
+  const t = State.tests[idx]; const blob = new Blob([JSON.stringify(t, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = t.name.replace(/\s+/g, '_') + '.json'; a.click(); showToast('Exported!', 'success');
+}
+
+// ===== FORMAT ENGINE =====
+const formats = {
+  A: `[\n  {\n    "question": "What is 2+2?",\n    "options": ["3", "4", "5", "6"],\n    "answer": 1\n  }\n]`,
+  B: `[\n  {\n    "q": "What is 2+2?",\n    "a": "3", "b": "4", "c": "5", "d": "6",\n    "correct": "b"\n  }\n]`,
+  C: `[\n  {\n    "question": "What is 2+2?",\n    "choices": ["3", "4", "5", "6"],\n    "correctIndex": 1\n  }\n]`
+};
+function showFormat(fmt, event) {
+  if (event) { document.querySelectorAll('.format-tab').forEach(t => t.classList.remove('active')); event.target.classList.add('active'); } 
+  else { document.querySelectorAll('.format-tab').forEach((t, i) => { t.classList.toggle('active', ['A','B','C'][i] === fmt); }); }
+  document.getElementById('formatPreview').innerHTML = `<button class="copy-format-btn" onclick="copyFormat('${fmt}')">📋 Copy</button>` + escapeHtml(formats[fmt]);
+}
+function copyFormat(fmt) {
+  const text = formats[fmt] + '\n\n⚠️ IMPORTANT RULE: Ensure the correct answers (A, B, C, or D) are distributed RANDOMLY across the dataset. Do not make the correct answer consistently the same option. Mix them organically to provide a true test challenge.';
+  copyToClipboardFallback(text, 'Format copied with randomization rule!');
+}
+function parseAndImport() {
+  const jsonStr = document.getElementById('jsonInput').value.trim();
+  if (!jsonStr) { showToast('Please paste JSON first!', 'warning'); return; }
+  try {
+    let parsed = JSON.parse(jsonStr); if (!Array.isArray(parsed)) parsed = [parsed];
+    const questions = parsed.map(item => {
+      if (item.question && item.options && Array.isArray(item.options)) {
+        let ansIdx = typeof item.answer === 'number' ? item.answer : item.options.indexOf(item.answer);
+        if (ansIdx === -1) ansIdx = 0; return { question: item.question, options: item.options, answer: ansIdx };
+      }
+      if (item.q && item.a !== undefined) {
+        const opts = [item.a, item.b, item.c, item.d].filter(x => x !== undefined);
+        const keyMap = {a:0, b:1, c:2, d:3}; let ansIdx = keyMap[(item.correct || '').toLowerCase()] ?? 0;
+        return { question: item.q, options: opts, answer: ansIdx };
+      }
+      if (item.question && item.choices) return { question: item.question, options: item.choices, answer: item.correctIndex || 0 };
+      return { question: item.question || item.q || 'Unknown', options: item.options || item.choices || [item.a, item.b, item.c, item.d].filter(x=>x!==undefined) || ['Option 1'], answer: item.answer ?? item.correctIndex ?? 0 };
+    });
+    State.manualQuestions = questions; renderManualQuestions(); showToast(`✅ Imported ${questions.length} questions!`, 'success');
+  } catch(e) { showToast('Invalid JSON: ' + e.message, 'error'); }
+}
+function addManualQuestion() { State.manualQuestions.push({ question: '', options: ['', '', '', ''], answer: 0 }); renderManualQuestions(); }
+function renderManualQuestions() {
+  document.getElementById('manualQuestions').innerHTML = State.manualQuestions.map((q, idx) => `
+    <div class="question-editor">
+      <div class="question-editor-header">
+        <span class="question-editor-num">Question ${idx + 1}</span>
+        <button class="modal-close" onclick="removeManualQuestion(${idx})" style="width:28px;height:28px;font-size:14px">✕</button>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-input" placeholder="Question text" value="${escapeHtml(q.question)}" onchange="State.manualQuestions[${idx}].question=this.value">
+      </div>
+      ${q.options.map((opt, oidx) => `
+        <div class="option-row">
+          <input type="radio" name="correct_${idx}" ${q.answer===oidx?'checked':''} onchange="State.manualQuestions[${idx}].answer=${oidx}">
+          <input type="text" class="form-input" placeholder="Option ${oidx+1}" value="${escapeHtml(opt)}" onchange="State.manualQuestions[${idx}].options[${oidx}]=this.value">
+          ${q.options.length > 2 ? `<button onclick="removeOption(${idx},${oidx})">✕</button>` : ''}
+        </div>
+      `).join('')}
+      <button class="add-option-btn" onclick="addOption(${idx})">+ Add Option</button>
+    </div>
+  `).join('');
+}
+function removeManualQuestion(idx) { State.manualQuestions.splice(idx, 1); renderManualQuestions(); }
+function addOption(qIdx) { State.manualQuestions[qIdx].options.push(''); renderManualQuestions(); }
+function removeOption(qIdx, oIdx) {
+  State.manualQuestions[qIdx].options.splice(oIdx, 1);
+  if (State.manualQuestions[qIdx].answer >= State.manualQuestions[qIdx].options.length) State.manualQuestions[qIdx].answer = 0;
+  renderManualQuestions();
+}
+function saveTest() {
+  const name = document.getElementById('testNameInput').value.trim();
+  if (!name) { showToast('Enter test name!', 'warning'); return; }
+  const questions = State.manualQuestions.filter(q => q.question.trim() && q.options.some(o => o.trim()));
+  if (questions.length === 0) { showToast('Add at least one question!', 'warning'); return; }
+  const testData = {
+    id: State.editingTestId !== null ? State.tests[State.editingTestId].id : 'test_' + Date.now(),
+    name, questions, createdAt: State.editingTestId !== null ? State.tests[State.editingTestId].createdAt : new Date().toISOString()
+  };
+  if (State.editingTestId !== null) State.tests[State.editingTestId] = testData; else State.tests.push(testData);
+  saveToStorage(); closeModal('createModal'); renderDashboard(); showToast(State.editingTestId !== null ? 'Test updated!' : 'Test created!', 'success');
+}
+
+// ===== TIME CONFIG =====
+function configureTest(idx) {
+  State.currentTest = State.tests[idx]; State.editingTestId = idx;
+  const qCount = State.currentTest.questions.length;
+  const defaultMin = Math.max(1, Math.ceil(qCount * State.settings.timePerQuestion / 60));
+  document.getElementById('tcTestName').textContent = State.currentTest.name;
+  document.getElementById('tcMinutes').value = defaultMin; document.getElementById('tcSeconds').value = 0;
+  document.getElementById('tcInfo').textContent = `${qCount} questions • ${State.settings.timePerQuestion}s per question (default: ${defaultMin} min)`;
+  updateTCDisplay(); showView('timeConfigView');
+}
+function updateTCDisplay() {
+  const m = parseInt(document.getElementById('tcMinutes').value) || 0; const s = parseInt(document.getElementById('tcSeconds').value) || 0;
+  const total = m * 60 + s;
+  document.getElementById('tcTotalTime').textContent = `${String(Math.floor(total / 60)).padStart(2, '0')}:${String(total % 60).padStart(2, '0')}`;
+}
+function setTCTime(m, s) { document.getElementById('tcMinutes').value = m; document.getElementById('tcSeconds').value = s; updateTCDisplay(); }
+function launchExam() {
+  const m = parseInt(document.getElementById('tcMinutes').value) || 0; const s = parseInt(document.getElementById('tcSeconds').value) || 0;
+  const total = m * 60 + s; if (total < 10) { showToast('Minimum 10 seconds required!', 'warning'); return; }
+  State.totalExamDuration = total; startExam();
+}
+
+// ===== EXAM ENGINE =====
+function startExam() {
+  State.currentQ = 0; State.answers = new Array(State.currentTest.questions.length).fill(-1);
+  State.marked = new Array(State.currentTest.questions.length).fill(false); State.visited = new Array(State.currentTest.questions.length).fill(false);
+  State.timeSpent = new Array(State.currentTest.questions.length).fill(0);
+  State.totalExamTime = 0; State.isPaused = false; State.isExamActive = true; State.overtimeSec = 0;
+  
+  // Anti-Cheat Reset
+  State.cheatWarnings = 0; document.getElementById('cheatStrikes').innerText = '0';
+  document.getElementById('cheatOverlay').classList.remove('active');
+
+  // Reset Tools
+  document.getElementById('scratchpad').classList.remove('active');
+  document.getElementById('calculator').classList.remove('active');
+  currentFontSize = 17; document.documentElement.style.setProperty('--q-font-size', '17px');
+
+  document.getElementById('qTotalDisplay').textContent = State.currentTest.questions.length;
+  document.getElementById('questionCardWrap').style.filter = "none";
+  document.getElementById('pauseOverlay').classList.remove('active');
+  document.getElementById('pauseBtn').innerHTML = '⏸️ Pause';
+  
+  document.getElementById('totalTimerCard').classList.toggle('hidden', !State.settings.showTotalTimer);
+  showView('examView'); buildPalette(); loadQuestion(0); startTimers();
+}
+function buildPalette() {
+  document.getElementById('paletteGrid').innerHTML = State.currentTest.questions.map((_, i) => `<button class="palette-btn" id="palBtn${i}" onclick="goToQuestion(${i})">${i+1}</button>`).join('');
+  updatePalette();
+}
+function updatePalette() {
+  State.currentTest.questions.forEach((_, i) => {
+    const btn = document.getElementById('palBtn' + i); btn.className = 'palette-btn';
+    if (i === State.currentQ) btn.classList.add('current');
+    if (State.answers[i] !== -1 && State.marked[i]) btn.classList.add('answered-marked');
+    else if (State.answers[i] !== -1) btn.classList.add('answered');
+    else if (State.marked[i]) btn.classList.add('marked');
+    else if (State.visited[i] && State.answers[i] === -1) btn.classList.add('unanswered-visited');
+  });
+}
+function loadQuestion(idx) {
+  State.currentQ = idx; State.visited[idx] = true; const q = State.currentTest.questions[idx];
+  document.getElementById('qNumDisplay').textContent = idx + 1;
+  document.getElementById('questionText').textContent = q.question;
+  document.getElementById('optionsList').innerHTML = q.options.map((opt, i) => {
+    let cls = 'option-item'; if (State.answers[idx] === i) cls += ' selected';
+    if (State.settings.instantFeedback && State.answers[idx] !== -1) {
+      if (i === q.answer) cls += ' correct-answer'; else if (State.answers[idx] === i) cls += ' wrong-answer';
+    }
+    return `<div class="${cls}" onclick="selectOption(${i})"><div class="option-radio"></div><div class="option-label">${escapeHtml(opt)}</div></div>`;
+  }).join('');
+  const markBtn = document.getElementById('markBtn');
+  if (State.marked[idx]) { markBtn.classList.add('marked'); markBtn.textContent = '🔖 Marked'; }
+  else { markBtn.classList.remove('marked'); markBtn.textContent = '🔖 Mark'; }
+  updatePalette(); resetQuestionTimer();
+}
+function selectOption(idx) { if (!State.isExamActive || State.isPaused) return; State.answers[State.currentQ] = idx; playSound('select'); loadQuestion(State.currentQ); }
+function saveAndNext() { if (State.isPaused) return; if (State.currentQ < State.currentTest.questions.length - 1) loadQuestion(State.currentQ + 1); else confirmSubmit(); }
+function toggleMark() { if (State.isPaused) return; State.marked[State.currentQ] = !State.marked[State.currentQ]; playSound('select'); loadQuestion(State.currentQ); showToast(State.marked[State.currentQ] ? 'Marked for review' : 'Mark removed', 'info'); }
+function clearResponse() { if (State.isPaused) return; State.answers[State.currentQ] = -1; loadQuestion(State.currentQ); showToast('Cleared', 'info'); }
+function goToQuestion(idx) { if (State.isPaused) return; loadQuestion(idx); }
+
+// ===== FLAWLESS PAUSE SYSTEM =====
+function togglePause() {
+  if (!State.isExamActive) return;
+  State.isPaused = !State.isPaused;
+  const overlay = document.getElementById('pauseOverlay');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const questionCardWrap = document.getElementById('questionCardWrap');
+  
+  if (State.isPaused) {
+    questionCardWrap.style.filter = "blur(10px) brightness(0.8)";
+    questionCardWrap.style.pointerEvents = "none";
+    overlay.classList.add('active');
+    pauseBtn.innerHTML = '▶️ Resume';
+    showToast('Exam Paused - Timer Stopped', 'warning');
+    if(window.speechSynthesis) window.speechSynthesis.cancel();
+  } else {
+    questionCardWrap.style.filter = "none";
+    questionCardWrap.style.pointerEvents = "auto";
+    overlay.classList.remove('active');
+    pauseBtn.innerHTML = '⏸️ Pause';
+    showToast('Exam Resumed', 'success');
+  }
+}
+
+// ===== ULTIMATE FEATURE: ANTI-CHEAT (TAB SWITCH) =====
+document.addEventListener('visibilitychange', () => {
+  if (State.isExamActive && !State.isPaused && document.hidden) {
+    State.cheatWarnings++;
+    document.getElementById('cheatStrikes').innerText = State.cheatWarnings;
+    document.getElementById('cheatOverlay').classList.add('active');
+    if(State.cheatWarnings >= 3) {
+      setTimeout(() => { dismissCheatWarning(); submitTest(); showToast('Auto submitted due to cheating.', 'error'); }, 2000);
+    } else {
+      togglePause(); 
+    }
+  }
+});
+function dismissCheatWarning() { document.getElementById('cheatOverlay').classList.remove('active'); }
+
+// ===== ULTIMATE FEATURE: FONT RESIZER =====
+function changeFontSize(dir) {
+  if (dir === 0) currentFontSize = 17;
+  else if (dir === 1 && currentFontSize < 26) currentFontSize += 2;
+  else if (dir === -1 && currentFontSize > 12) currentFontSize -= 2;
+  document.documentElement.style.setProperty('--q-font-size', currentFontSize + 'px');
+}
+
+// ===== ULTIMATE FEATURE: TEXT TO SPEECH =====
+function readQuestion() {
+  if (!window.speechSynthesis) return showToast('TTS not supported', 'error');
+  window.speechSynthesis.cancel();
+  const text = document.getElementById('questionText').innerText;
+  const utterance = new SpeechSynthesisUtterance(text);
+  window.speechSynthesis.speak(utterance);
+}
+
+// ===== TIMERS =====
+function resetQuestionTimer() {
+  clearInterval(State.timer); State.timeLeft = State.settings.timePerQuestion; State.overtimeSec = 0; updateTimerDisplay();
+  State.timer = setInterval(() => {
+    if (State.isPaused) return;
+    if (State.timeLeft > 0) State.timeLeft--; else State.overtimeSec++;
+    State.timeSpent[State.currentQ]++; updateTimerDisplay();
+    if (State.timeLeft <= 5 && State.timeLeft > 0 && State.settings.sound) playSound('tick');
+  }, 1000);
+}
+function updateTimerDisplay() {
+  const box = document.getElementById('perQTimer'); const text = document.getElementById('perQTimerText');
+  box.className = 'per-q-timer-box';
+  if (State.timeLeft > 0) {
+    text.textContent = State.timeLeft + 's';
+    if (State.timeLeft <= State.settings.warningAt) box.classList.add('danger');
+    else if (State.timeLeft <= State.settings.warningAt + 5) box.classList.add('warning');
+    else box.classList.add('normal');
+  } else {
+    if (State.settings.overtime) { text.textContent = '+' + String(State.overtimeSec).padStart(2, '0') + 's'; box.classList.add('overtime'); }
+    else { text.textContent = '0s'; box.classList.add('danger'); }
+  }
+}
+function startTimers() {
+  clearInterval(State.totalTimer); updateTotalTimerDisplay();
+  State.totalTimer = setInterval(() => {
+    if (State.isPaused) return; State.totalExamTime++; updateTotalTimerDisplay();
+    if (State.totalExamTime >= State.totalExamDuration) { showToast('⏰ Time is up! Auto-submitting...', 'warning'); setTimeout(() => submitTest(), 1000); }
+  }, 1000);
+}
+function updateTotalTimerDisplay() {
+  const remaining = Math.max(0, State.totalExamDuration - State.totalExamTime);
+  document.getElementById('totalTimerValue').textContent = `${String(Math.floor(remaining / 60)).padStart(2, '0')}:${String(remaining % 60).padStart(2, '0')}`;
+  const card = document.getElementById('totalTimerCard'); card.className = 'total-timer-card';
+  if (!State.settings.showTotalTimer) card.classList.add('hidden');
+  const pct = remaining / State.totalExamDuration;
+  if (pct <= 0.1) card.classList.add('danger'); else if (pct <= 0.25) card.classList.add('warning');
+}
+function confirmSubmit() {
+  if (State.isPaused) return;
+  const answered = State.answers.filter(a => a !== -1).length;
+  document.getElementById('submitModalTitle').textContent = '⚠️ Submit Test?'; document.getElementById('submitModalIcon').textContent = '⚠️';
+  document.getElementById('submitMsg').textContent = `You have answered ${answered} out of ${State.currentTest.questions.length} questions. Submit now?`;
+  document.getElementById('submitModal').classList.add('show');
+}
+function submitTest() {
+  closeModal('submitModal');
+  State.isExamActive = false; State.isPaused = false;
+  clearInterval(State.timer); clearInterval(State.totalTimer);
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  playSound('submit');
+  let correct = 0, wrong = 0, skipped = 0;
+  State.currentTest.questions.forEach((q, i) => { if (State.answers[i] === -1) skipped++; else if (State.answers[i] === q.answer) correct++; else wrong++; });
+  const attempt = {
+    id: 'att_' + Date.now(), testId: State.currentTest.id, testName: State.currentTest.name, date: new Date().toISOString(),
+    correct, wrong, skipped, total: State.currentTest.questions.length, timeTaken: State.totalExamTime,
+    answers: [...State.answers], timeSpent: [...State.timeSpent]
+  };
+  State.attempts.push(attempt); saveToStorage(); showResults(attempt);
+}
+
+// ===== RESULTS =====
+function showResults(attempt) {
+  showView('resultsView'); const pct = Math.round((attempt.correct / attempt.total) * 100);
+  document.getElementById('resultScore').textContent = attempt.correct; document.getElementById('resultTotal').textContent = '/ ' + attempt.total;
+  document.getElementById('resCorrect').textContent = attempt.correct; document.getElementById('resWrong').textContent = attempt.wrong; document.getElementById('resSkipped').textContent = attempt.skipped;
+  const mins = Math.floor(attempt.timeTaken / 60); const secs = attempt.timeTaken % 60;
+  document.getElementById('resTime').textContent = mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+  let emoji, title, subtitle;
+  if (pct >= 80) { emoji='🏆'; title='Outstanding!'; subtitle='Champion performance!'; } else if (pct >= 60) { emoji='🎉'; title='Great Job!'; subtitle='You passed with flying colors!'; } else if (pct >= 40) { emoji='💪'; title='Good Effort!'; subtitle='Keep practicing!'; } else { emoji='📚'; title='Keep Learning!'; subtitle='Don\'t give up!'; }
+  document.getElementById('resultTitle').textContent = emoji + ' ' + title; document.getElementById('resultSubtitle').textContent = subtitle;
+  renderPieChart(attempt.correct, attempt.wrong, attempt.skipped); renderBarChart(attempt.timeSpent); renderReview(attempt);
+  if (pct >= 60) launchConfetti();
+}
+function renderPieChart(correct, wrong, skipped) {
+  const container = document.getElementById('pieChartContainer'); const total = correct + wrong + skipped;
+  if (total === 0) { container.innerHTML = '<p>No data</p>'; return; }
+  const size = 200, cx = size/2, cy = size/2, r = 80, circ = 2 * Math.PI * r;
+  const cPct = correct/total, wPct = wrong/total, sPct = skipped/total;
+  container.innerHTML = `
+    <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--border)" stroke-width="30"/>
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--success)" stroke-width="30" stroke-dasharray="${cPct*circ} ${circ}" stroke-dashoffset="0" transform="rotate(-90 ${cx} ${cy})"/>
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--danger)" stroke-width="30" stroke-dasharray="${wPct*circ} ${circ}" stroke-dashoffset="${-cPct*circ}" transform="rotate(-90 ${cx} ${cy})"/>
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--warning)" stroke-width="30" stroke-dasharray="${sPct*circ} ${circ}" stroke-dashoffset="${-(cPct+wPct)*circ}" transform="rotate(-90 ${cx} ${cy})"/>
+      <text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="28" font-weight="800" fill="var(--text)">${Math.round(cPct*100)}%</text>
+      <text x="${cx}" y="${cy+16}" text-anchor="middle" font-size="12" fill="var(--text2)">Score</text>
+    </svg>
+    <div style="margin-left:20px;display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text)"><div style="width:16px;height:16px;background:var(--success);border-radius:4px"></div> Correct: ${correct}</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text)"><div style="width:16px;height:16px;background:var(--danger);border-radius:4px"></div> Wrong: ${wrong}</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text)"><div style="width:16px;height:16px;background:var(--warning);border-radius:4px"></div> Skipped: ${skipped}</div>
+    </div>`;
+  container.style.display = 'flex'; container.style.alignItems = 'center'; container.style.flexWrap = 'wrap'; container.style.justifyContent = 'center';
+}
+function renderBarChart(timeSpent) {
+  const container = document.getElementById('barChartContainer'); const maxTime = Math.max(...timeSpent, 1); const barWidth = Math.max(16, Math.min(32, 360 / timeSpent.length - 4));
+  container.innerHTML = `<div style="display:flex;align-items:flex-end;gap:3px;height:220px;padding:10px;overflow-x:auto;max-width:100%">${timeSpent.map((t, i) => {
+    const h = (t / maxTime) * 180; const color = t > State.settings.timePerQuestion ? 'var(--danger)' : (t > State.settings.timePerQuestion * 0.7 ? 'var(--warning)' : 'var(--success)');
+    return `<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="font-size:10px;color:var(--text3)">${t}s</div><div style="width:${barWidth}px;height:${Math.max(h,4)}px;background:${color};border-radius:4px 4px 0 0"></div><div style="font-size:10px;color:var(--text3);font-weight:600">${i+1}</div></div>`;
+  }).join('')}</div>`;
+}
+function renderReview(attempt) {
+  document.getElementById('reviewList').innerHTML = State.currentTest.questions.map((q, i) => {
+    const userAns = attempt.answers[i]; const isCorrect = userAns === q.answer; const isSkipped = userAns === -1;
+    let status = isSkipped ? 'skipped' : (isCorrect ? 'correct' : 'wrong'); let statusText = isSkipped ? 'Skipped' : (isCorrect ? 'Correct' : 'Wrong');
+    return `<div class="review-item">
+      <div class="review-item-header" onclick="this.nextElementSibling.classList.toggle('show')">
+        <span class="review-q-num">Q${i+1}. ${escapeHtml(q.question.substring(0, 60))}${q.question.length>60?'...':''}</span><span class="review-status ${status}">${statusText}</span>
+      </div>
+      <div class="review-item-body"><div class="review-question-text">${escapeHtml(q.question)}</div>
+        <div class="review-options-list">${q.options.map((opt, j) => {
+          let cls = 'neutral'; if (j === q.answer) cls = 'correct'; else if (j === userAns && !isCorrect) cls = 'wrong';
+          return `<div class="review-opt ${cls}">${String.fromCharCode(65+j)}. ${escapeHtml(opt)} ${j===q.answer?'✓':''}</div>`;
+        }).join('')}</div>
+      </div></div>`;
+  }).join('');
+}
+function retryTest() { const idx = State.tests.findIndex(t => t.id === State.currentTest.id); if (idx !== -1) configureTest(idx); }
+function downloadResult() {
+  const attempt = State.attempts[State.attempts.length - 1]; let text = `🏆 PROVAKAR MOCK PRACTICE - Result\n═══════════════════════════════\n`;
+  text += `Test: ${attempt.testName}\nDate: ${new Date(attempt.date).toLocaleString()}\nTime: ${Math.floor(attempt.timeTaken/60)}m ${attempt.timeTaken%60}s\n`;
+  text += `═══════════════════════════════\nScore: ${attempt.correct}/${attempt.total} (${Math.round(attempt.correct/attempt.total*100)}%)\n✅ Correct: ${attempt.correct}\n❌ Wrong: ${attempt.wrong}\n⏭️ Skipped: ${attempt.skipped}\n═══════════════════════════════\n\n`;
+  State.currentTest.questions.forEach((q, i) => { const userAns = attempt.answers[i]; const status = userAns === -1 ? '⏭️ Skipped' : (userAns === q.answer ? '✅ Correct' : '❌ Wrong'); text += `Q${i+1}: ${q.question}\n   Your Answer: ${userAns !== -1 ? q.options[userAns] : 'None'}\n   Correct: ${q.options[q.answer]}\n   Time: ${attempt.timeSpent[i]}s\n   ${status}\n\n`; });
+  const blob = new Blob([text], {type: 'text/plain'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `provakar_result_${Date.now()}.txt`; a.click(); showToast('Downloaded!', 'success');
+}
+function copyResult() {
+  const attempt = State.attempts[State.attempts.length - 1];
+  const text = `PROVAKAR Result: ${attempt.testName} - Score: ${attempt.correct}/${attempt.total} (${Math.round(attempt.correct/attempt.total*100)}%) - ✅${attempt.correct} ❌${attempt.wrong} ⏭️${attempt.skipped}`;
+  copyToClipboardFallback(text, 'Copied!');
+}
+
+// ===== PANELS =====
+function openPanel(id) { document.getElementById(id).classList.add('open'); document.getElementById(id.replace('Panel','Overlay')).classList.add('show'); if (id === 'settingsPanel') loadSettingsUI(); if (id === 'todoPanel') renderTodos(); if (id === 'promptPanel') { renderSubjectList(); document.getElementById('customInstructionsText').value = State.customInstructions; } }
+function closePanel(id) { document.getElementById(id).classList.remove('open'); document.getElementById(id.replace('Panel','Overlay')).classList.remove('show'); }
+
+// ===== SETTINGS =====
+function loadSettingsUI() {
+  document.getElementById('setTimePerQ').value = State.settings.timePerQuestion; document.getElementById('setWarning').value = State.settings.warningAt;
+  document.getElementById('setPositive').value = State.settings.positiveMark; document.getElementById('setNegative').value = State.settings.negativeMark;
+  document.getElementById('setOvertime').classList.toggle('active', State.settings.overtime); document.getElementById('setInstant').classList.toggle('active', State.settings.instantFeedback);
+  document.getElementById('setSound').classList.toggle('active', State.settings.sound); document.getElementById('setClock').classList.toggle('active', State.settings.showClock);
+  document.getElementById('setTotalTimer').classList.toggle('active', State.settings.showTotalTimer); document.getElementById('setDark').classList.toggle('active', State.settings.darkMode);
+}
+function updateSetting(key, value) { State.settings[key] = isNaN(value) ? value : Number(value); saveToStorage(); showToast('Setting updated!', 'success'); if (key === 'showTotalTimer' && State.isExamActive) { document.getElementById('totalTimerCard').classList.toggle('hidden', !State.settings.showTotalTimer); } }
+function toggleSetting(key, el) { State.settings[key] = !State.settings[key]; el.classList.toggle('active'); saveToStorage(); if (key === 'darkMode') applyTheme(); if (key === 'showClock') updateISTClock(); if (key === 'showTotalTimer' && State.isExamActive) { document.getElementById('totalTimerCard').classList.toggle('hidden', !State.settings.showTotalTimer); } showToast(`${key} ${State.settings[key] ? 'enabled' : 'disabled'}`, 'info'); }
+function exportAllData() {
+  const data = { tests: State.tests, attempts: State.attempts, settings: State.settings, todos: State.todos, profile: State.profile, customInstructions: State.customInstructions, exportDate: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `provakar_backup_${Date.now()}.json`; a.click(); showToast('All data exported!', 'success');
+}
+function importData(event) {
+  const file = event.target.files[0]; if (!file) return; const reader = new FileReader();
+  reader.onload = (e) => { try { const data = JSON.parse(e.target.result); if (data.tests) State.tests = data.tests; if (data.attempts) State.attempts = data.attempts; if (data.settings) State.settings = {...State.settings, ...data.settings}; if (data.todos) State.todos = data.todos; if (data.profile) State.profile = data.profile; if (data.customInstructions) State.customInstructions = data.customInstructions; saveToStorage(); applyTheme(); updateHeaderProfile(); updateISTClock(); renderDashboard(); showToast('Data imported!', 'success'); } catch(err) { showToast('Invalid file', 'error'); } };
+  reader.readAsText(file);
+}
+function clearAllData() {
+  if (confirm('⚠️ Delete ALL data?') && confirm('This CANNOT be undone. Continue?')) {
+    State.tests = []; State.attempts = []; State.todos = []; State.customInstructions = "Structure must match Format A, and ensure options are distributed randomly. Questions should be exam-standard difficulty with realistic traps and distractors.";
+    State.settings = { timePerQuestion:30, overtime:true, warningAt:10, positiveMark:1, negativeMark:0, instantFeedback:false, sound:true, darkMode:false, showClock:true, showTotalTimer:true };
+    saveToStorage(); applyTheme(); updateISTClock(); renderDashboard(); showToast('All data cleared!', 'success');
+  }
+}
+
+// ===== TO-DO =====
+function addTodo() {
+  const name = document.getElementById('todoName').value.trim(); if (!name) { showToast('Enter task name', 'warning'); return; }
+  State.todos.push({ id: 'todo_' + Date.now(), name, date: document.getElementById('todoDate').value, time: document.getElementById('todoTime').value, desc: document.getElementById('todoDesc').value.trim(), completed: false, createdAt: new Date().toISOString() });
+  saveToStorage(); document.getElementById('todoName').value = ''; document.getElementById('todoDesc').value = ''; renderTodos(); showToast('Task added!', 'success');
+}
+function renderTodos() {
+  const list = document.getElementById('todoList');
+  if (State.todos.length === 0) { list.innerHTML = '<div class="empty-state" style="padding:30px"><div style="font-size:48px;opacity:.3">📋</div><p style="color:var(--text3)">No tasks yet. Add your first task above!</p></div>'; return; }
+  const sorted = [...State.todos].sort((a, b) => { if (a.completed !== b.completed) return a.completed ? 1 : -1; return new Date(b.createdAt) - new Date(a.createdAt); });
+  list.innerHTML = sorted.map(t => `
+    <div class="todo-item ${t.completed ? 'completed' : ''}">
+      <div class="todo-item-header"><div class="todo-checkbox ${t.completed ? 'checked' : ''}" onclick="toggleTodo('${t.id}')"></div><div class="todo-name">${escapeHtml(t.name)}</div>
+        <div class="todo-actions"><button onclick="editTodo('${t.id}')" title="Edit">✏️</button><button class="delete" onclick="deleteTodo('${t.id}')" title="Delete">🗑️</button></div>
+      </div>
+      ${t.desc ? `<div style="font-size:12px;color:var(--text2);margin-bottom:6px;padding-left:32px">${escapeHtml(t.desc)}</div>` : ''}
+      <div class="todo-meta" style="padding-left:32px">${t.date ? `<span>📅 ${t.date}</span>` : ''}${t.time ? `<span>🕐 ${t.time}</span>` : ''}</div>
+    </div>
+  `).join('');
+}
+function toggleTodo(id) { const t = State.todos.find(x => x.id === id); if (t) { t.completed = !t.completed; saveToStorage(); renderTodos(); } }
+function deleteTodo(id) { if (confirm('Delete this task?')) { State.todos = State.todos.filter(x => x.id !== id); saveToStorage(); renderTodos(); showToast('Deleted', 'success'); } }
+function editTodo(id) { const t = State.todos.find(x => x.id === id); if (!t) return; const name = prompt('Edit task name:', t.name); if (name !== null && name.trim()) { t.name = name.trim(); saveToStorage(); renderTodos(); } }
+
+// ===== PROMPT GENERATOR =====
+const subjects = [ { name: 'General Knowledge', icon: '🌐' }, { name: 'Rural Development', icon: '🌾' }, { name: 'Quantitative Aptitude', icon: '🔢' }, { name: 'Reasoning Ability', icon: '🧠' }, { name: 'English Language', icon: '📖' }, { name: 'General Awareness', icon: '🌍' }, { name: 'History', icon: '📜' }, { name: 'Geography', icon: '🗺️' }, { name: 'General Science', icon: '🔬' }, { name: 'Current Affairs', icon: '📰' }, { name: 'Computer Knowledge', icon: '💻' }, { name: 'Bengali Literature', icon: '📚' }, { name: 'Indian Polity', icon: '⚖️' }, { name: 'Economics', icon: '💰' } ];
+function renderSubjectList() {
+  const list = document.getElementById('subjectList');
+  let html = `
+    <div class="subject-item universal">
+      <div class="subject-name">📄 Universal JSON Formatting Template</div>
+      <div class="prompt-template">Amai [SUBJECT] subject er [CHAPTER_NAME] topic e, [EXAM_NAME] exam er standard onusare [NUMBER] ti MCQ mock test set toiry kore dao [SELECTED_LANGUAGE] language e. Strictly clear clean JSON output chai, kono text ba markdown thakbe na wrapper e.</div>
+      <div class="subject-actions"><button class="btn btn-sm btn-primary" onclick="copyUniversalTemplate()">📋 Copy Template</button></div>
+    </div>
+  `;
+  html += subjects.map(s => `
+    <div class="subject-item">
+      <div class="subject-name">${s.icon} ${s.name}</div>
+      <div class="prompt-template">Amai ${s.name} subject er [CHAPTER_NAME] topic e, [EXAM_NAME] exam er standard onusare [NUMBER] ti MCQ mock test set toiry kore dao. Structure must match Format A, and ensure options are distributed randomly.</div>
+      <div class="subject-actions"><button class="btn btn-sm btn-primary" onclick="copySubjectPrompt('${s.name}')">📋 Copy</button><button class="btn btn-sm btn-secondary" onclick="useSubjectTemplate('${s.name}')">✨ Use</button></div>
+    </div>
+  `).join(''); list.innerHTML = html;
+}
+function copyUniversalTemplate() { const text = `Amai [SUBJECT] subject er [CHAPTER_NAME] topic e, [EXAM_NAME] exam er standard onusare [NUMBER] ti MCQ mock test set toiry kore dao [SELECTED_LANGUAGE] language e. Strictly clear clean JSON output chai, kono text ba markdown thakbe na wrapper e.\n\n⚠️ IMPORTANT RULE: Ensure the correct answers ('A', 'B', 'C', or 'D') are distributed RANDOMLY across the dataset. Do not make the correct answer consistently the same option.`; copyToClipboardFallback(text, 'Universal template copied!'); }
+function copySubjectPrompt(subject) { const text = `Amai ${subject} subject er [CHAPTER_NAME] topic e, [EXAM_NAME] exam er standard onusare [NUMBER] ti MCQ mock test set toiry kore dao.\n\nStructure must match Format A:\n[{"question": "...", "options": ["A", "B", "C", "D"], "answer": 0}]\n\n⚠️ IMPORTANT RULE: Ensure the correct answers ('A', 'B', 'C', or 'D') are distributed RANDOMLY across the dataset. Do not make the correct answer consistently the same option. Mix them organically to provide a true test challenge.`; copyToClipboardFallback(text, 'Template copied! Fill in the brackets.'); }
+function useSubjectTemplate(subject) { document.getElementById('pgSubject').value = subject; document.getElementById('pgChapter').focus(); showToast(`${subject} selected! Fill in the details.`, 'info'); }
+function generateAndCopyPrompt() {
+  const subject = document.getElementById('pgSubject').value.trim() || 'General Topics'; const chapter = document.getElementById('pgChapter').value.trim() || 'Complete Syllabus'; const exam = document.getElementById('pgExam').value.trim() || 'Competitive Government Exam'; const number = document.getElementById('pgNumber').value || '10'; const language = document.getElementById('pgLanguage').value; const customRules = document.getElementById('customInstructionsText').value.trim() || 'No additional custom rules.';
+  State.customInstructions = customRules; saveToStorage();
+  const perfectPrompt = `You are an expert Question Setter and Psychometric Test Developer with 10+ years of experience in creating highly accurate mock tests for competitive exams.\n\nYour task is to generate a premium quality, error-free MCQ mock test set based strictly on the following parameters provided by the user:\n\n[USER PARAMETERS]\n- SUBJECT: ${subject}\n- CHAPTER / TOPIC: ${chapter}\n- EXAM NAME: ${exam}\n- NUMBER OF QUESTIONS: ${number}\n- LANGUAGE: ${language}\n\n[STRICT OUTPUT FORMAT RULES]\n1. Return ONLY a valid JSON array. Do NOT include any markdown formatting (like \`\`\`json or \`\`\`), introduction, explanation, header, footer, or conversational filler. The output must start with '[' and end with ']'.\n2. Choose the absolute BEST format from the 3 valid JSON structures below that fits the ${exam} standard perfectly:\n\nFormat Options:\nOption A:\n[\n  {\n    "question": "Question text here",\n    "options": ["Option 1", "Option 2", "Option 3", "Option 4"],\n    "answer": 1\n  }\n]\nOption B:\n[\n  {\n    "q": "Question text here",\n    "a": "Option 1", "b": "Option 2", "c": "Option 3", "d": "Option 4",\n    "correct": "b"\n  }\n]\nOption C:\n[\n  {\n    "question": "Question text here",\n    "choices": ["Option 1", "Option 2", "Option 3", "Option 4"],\n    "correctIndex": 1\n  }\n]\n\n[CRITICAL QUALITY & BEHAVIORAL RULES]\n- LANGUAGE ACCURACY: The entire content (questions, options/choices) MUST be strictly in the selected language: ${language}. If 'Mixed' is selected, questions must present standard bilingual terminology.\n- RANDOMIZATION: Ensure the correct answers are distributed completely RANDOMLY across the options (A, B, C, D or index 0,1,2,3). Do not make the correct answer consistently follow a pattern.\n- EXAM STANDARD: The difficulty level, question archetypes, and traps must mimic the actual ${exam} past papers.\n- NO DUPLICATION: Do not repeat concepts or questions.\n\n[ADDITIONAL USER CUSTOM RULES]\n${customRules}\n\nGenerate the JSON dataset now:`;
+  copyToClipboardFallback(perfectPrompt, '✨ Perfect expert-level prompt copied!');
+}
+function editCustomInstructions() { const textarea = document.getElementById('customInstructionsText'); textarea.focus(); textarea.select(); showToast('Edit your instructions below', 'info'); }
+function copyCustomInstructions() { const text = document.getElementById('customInstructionsText').value; copyToClipboardFallback(text, 'Instructions copied!'); }
+function deleteCustomInstructions() { if (confirm('Reset custom instructions to default?')) { State.customInstructions = "Structure must match Format A, and ensure options are distributed randomly. Questions should be exam-standard difficulty with realistic traps and distractors."; document.getElementById('customInstructionsText').value = State.customInstructions; saveToStorage(); showToast('Reset to default!', 'success'); } }
+
+// ===== ULTIMATE FEATURE: SCRATCHPAD =====
+const canvas = document.getElementById('roughCanvas');
+const ctx = canvas ? canvas.getContext('2d') : null;
+let drawing = false;
+function toggleScratchpad() {
+  const c = document.getElementById('scratchpad');
+  c.classList.toggle('active');
+  if (c.classList.contains('active')) {
+    canvas.width = c.clientWidth; canvas.height = c.clientHeight;
+    ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.strokeStyle = '#4f46e5';
+  }
+}
+function clearCanvas() { if(ctx) ctx.clearRect(0,0,canvas.width,canvas.height); }
+
+// ===== ULTIMATE FEATURE: CALCULATOR =====
+function toggleCalculator() { document.getElementById('calculator').classList.toggle('active'); }
+function calcInput(val) {
+  const d = document.getElementById('calcDisplay');
+  if(val === 'C') { State.calcValue = ''; d.value = '0'; return; }
+  State.calcValue += val; d.value = State.calcValue;
+}
+function calcCalculate() {
+  try { 
+    const sanitized = State.calcValue.replace(/[^-()\d/*+.]/g, '');
+    const res = new Function('return ' + sanitized)();
+    document.getElementById('calcDisplay').value = res;
+    State.calcValue = String(res);
+  } catch(e) { document.getElementById('calcDisplay').value = 'Error'; State.calcValue=''; }
+}
+
+// ===== MODALS & TOAST =====
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+function showToast(msg, type='info') {
+  const container = document.getElementById('toastContainer'); const toast = document.createElement('div');
+  toast.className = `toast ${type}`; const icons = {success:'✅', error:'❌', warning:'⚠️', info:'ℹ️'};
+  toast.innerHTML = `<span>${icons[type]||'ℹ️'}</span> ${msg}`;
+  container.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(100px) scale(.9)'; toast.style.transition = 'all .3s'; setTimeout(() => toast.remove(), 300); }, 2500);
+}
+
+// ===== SOUND & CONFETTI =====
+let audioCtx; function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+function playSound(type) {
+  if (!State.settings.sound) return;
+  try { initAudio(); const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); osc.connect(gain); gain.connect(audioCtx.destination); gain.gain.value = 0.1;
+    switch(type) { case 'select': osc.frequency.value = 600; osc.start(); osc.stop(audioCtx.currentTime + 0.08); break; case 'tick': osc.frequency.value = 1000; gain.gain.value = 0.05; osc.start(); osc.stop(audioCtx.currentTime + 0.04); break; case 'submit': osc.frequency.value = 500; osc.start(); setTimeout(() => osc.frequency.value = 700, 100); setTimeout(() => osc.frequency.value = 900, 200); osc.stop(audioCtx.currentTime + 0.4); break; }
+  } catch(e) {}
+}
+function launchConfetti() {
+  const container = document.createElement('div'); container.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:5000'; document.body.appendChild(container);
+  const colors = ['#667eea','#7c3aed','#10b981','#f59e0b','#ef4444','#3b82f6'];
+  for (let i = 0; i < 60; i++) { setTimeout(() => { const c = document.createElement('div'); c.style.cssText = `position:absolute;width:${Math.random()*8+4}px;height:${Math.random()*8+4}px;background:${colors[Math.floor(Math.random()*colors.length)]};top:-10px;left:${Math.random()*100}%;border-radius:${Math.random()>.5?'50%':'2px'};animation:confettiFall ${Math.random()*2+2}s linear forwards`; container.appendChild(c); setTimeout(() => c.remove(), 4000); }, i * 30); }
+  setTimeout(() => container.remove(), 5000);
+}
+const style = document.createElement('style'); style.textContent = '@keyframes confettiFall{to{top:110vh;transform:rotate(720deg)}}'; document.head.appendChild(style);
+
+// ===== UTILS =====
+function escapeHtml(str) { if (!str) return ''; return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// ===== KEYBOARD =====
+document.addEventListener('keydown', e => {
+  if (!State.isExamActive) return;
+  if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
+  if (e.key === 'Escape') { togglePause(); return; }
+  if (State.isPaused) return;
+  const q = State.currentTest.questions[State.currentQ]; if (!q) return;
+  if (e.key >= '1' && e.key <= '4') { const idx = parseInt(e.key) - 1; if (idx < q.options.length) selectOption(idx); }
+  if (e.key === 'ArrowRight' || e.key === 'n' || e.key === 'N') saveAndNext();
+  if (e.key === 'ArrowLeft' || e.key === 'p' || e.key === 'P') { if (State.currentQ > 0) loadQuestion(State.currentQ - 1); }
+  if (e.key === 'm' || e.key === 'M') toggleMark();
+  if (e.key === 'c' || e.key === 'C') clearResponse();
+});
+window.addEventListener('beforeunload', e => { if (State.isExamActive) { e.preventDefault(); e.returnValue = ''; } });
+
+// ===== INIT & EVENT LISTENERS FOR TOOLS =====
+function init() {
+  const hasProfile = loadFromStorage(); applyTheme(); updateISTClock(); setInterval(updateISTClock, 1000);
+  if (hasProfile && State.profile.name) { updateHeaderProfile(); showDashboard(); } else { showView('profileView'); }
+
+  // Canvas Drawing Listeners
+  if(canvas) {
+    canvas.addEventListener('mousedown', (e) => { drawing=true; ctx.beginPath(); ctx.moveTo(e.offsetX, e.offsetY); });
+    canvas.addEventListener('mousemove', (e) => { if(drawing){ ctx.lineTo(e.offsetX, e.offsetY); ctx.stroke(); }});
+    canvas.addEventListener('mouseup', () => drawing=false);
+    canvas.addEventListener('touchstart', (e) => { drawing=true; const t=e.touches[0]; const r=canvas.getBoundingClientRect(); ctx.beginPath(); ctx.moveTo(t.clientX-r.left, t.clientY-r.top); }, {passive:false});
+    canvas.addEventListener('touchmove', (e) => { if(drawing){ e.preventDefault(); const t=e.touches[0]; const r=canvas.getBoundingClientRect(); ctx.lineTo(t.clientX-r.left, t.clientY-r.top); ctx.stroke(); }}, {passive:false});
+    canvas.addEventListener('touchend', () => drawing=false);
+  }
+
+  // Calculator Dragging Listeners
+  const calcDiv = document.getElementById('calculator'); const calcHead = document.getElementById('calcHeader');
+  let isDraggingCalc = false, cOffsetX, cOffsetY;
+  if(calcHead) {
+    calcHead.addEventListener('mousedown', e => { isDraggingCalc=true; cOffsetX=e.clientX-calcDiv.getBoundingClientRect().left; cOffsetY=e.clientY-calcDiv.getBoundingClientRect().top; });
+    document.addEventListener('mousemove', e => { if(isDraggingCalc){ calcDiv.style.left = (e.clientX-cOffsetX)+'px'; calcDiv.style.top = (e.clientY-cOffsetY)+'px'; }});
+    document.addEventListener('mouseup', () => isDraggingCalc=false);
+  }
+}
+init();
+</script>
+</body>
+</html>
